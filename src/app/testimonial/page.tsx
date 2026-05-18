@@ -18,10 +18,10 @@ const page = () => {
     {
       profile: Doctor_1,
       name: "Shefali Saha",
-      description: `Q Answer lab is an outstanding Lab. They are providing prompt and fast, perfect COVID test results. They are charging very reasonable and minimal for test.
+      description: `Paramount Lab lab is an outstanding Lab. They are providing prompt and fast, perfect COVID test results. They are charging very reasonable and minimal for test.
 Overall, all the staffs are very humble, knowledgeable in that field. The management, they really treat their staffs with dignity, respect, treating as their own family. They are allowing us to work while you work, and play while you play.
-I highly recommend Q Answer Lab for infectious tests.
-God bless Q Answer Lab.`,
+I highly recommend Paramount Lab for infectious tests.
+God bless Paramount Lab.`,
       rating: 5,
     },
     {
