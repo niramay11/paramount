@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Poppins:wght@400;700&family=Sora:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-poppins: "Poppins", sans-serif;
+  --font-sora: "Sora", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-open-sans: "Open Sans", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-poppins: "Poppins", sans-serif;
+  --font-sora: "Sora", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-open-sans: "Open Sans", sans-serif;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  /* Use one of your preferred fonts as default */
+  font-family: var(--font-inter), var(--font-poppins), var(--font-sora),
+    var(--font-open-sans), Arial, Helvetica, sans-serif;
+}
+
+.book {
+  gap: 8;
+  padding: 12.8px 22.4px 12.8px 22.4px;
+  border-radius: 80px;
+  box-shadow: 0px 6.4px 18.4px 0px rgba(65, 132, 247, 0.24);
+  background: linear-gradient(
+    141.26deg,
+    rgb(21, 69, 101) -9.218%,
+    rgb(121, 49, 70) 195.768%
+  );
+  color: rgb(255, 255, 255);
+  font-family: Sora;
+  font-size: 14.4px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.bg-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100vw;
+  z-index: -1;
+  background: linear-gradient(
+    0deg,
+    rgb(44, 92, 132),
+    rgb(114, 158, 182) 27.717%,
+    rgba(107, 153, 178, 0.4) 67.691%,
+    rgba(94, 144, 171, 0.2) 125.31%
+  );
+}
+
+.bg-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100vw;
+  z-index: -1;
+  background: #fdfff3
+}
+
+.scientist_circle {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, rgb(129, 52, 74), rgb(21, 69, 101) 100%);
+}
+
+.button-bg{
+  background: linear-gradient(141.26deg, rgb(21, 69, 101) -9.723%,rgb(121, 49, 70) 196.07%);
+}
+
+.footer-bg {
+  background: linear-gradient(-0.72deg, rgb(106, 150, 176) -71.973%,rgb(21, 69, 101) 64.014%);
+}
