@@ -73,7 +73,8 @@ const NAV_ITEMS: NavItemConfig[] = [
       { href: "/laboratory-forms", label: "Lab Forms",    icon: FileTextIcon, desc: "Download lab forms"   },
     ],
   },
-  { id: "career", label: "Career", href: "/career" },
+  { id: "career",  label: "Career",  href: "/career"  },
+  { id: "contact", label: "Contact", href: "/contact" },
 ];
 
 /* ═══════════════════════════════════════════════════════════
@@ -113,14 +114,16 @@ const BRAND_GRADIENT = "linear-gradient(135deg, #154565 0%, #793146 100%)";
 const focusRing =
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30 rounded";
 
-/* nav link — underline style (mintexcare-inspired) */
+/* nav link — pill/capsule style */
 function navLinkCls(active: boolean) {
   return [
-    "relative group flex items-center gap-1 py-2 px-1",
+    "relative group flex items-center gap-1 py-1.5 px-3",
     "font-poppins font-medium text-[13.5px] tracking-[0.01em] cursor-pointer",
-    "transition-colors duration-200",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30 rounded",
-    active ? "text-[#154565]" : "text-[#4a6070] hover:text-[#154565]",
+    "rounded-lg transition-all duration-200",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30",
+    active
+      ? "bg-[#154565]/[0.09] text-[#154565]"
+      : "text-[#4a6070] hover:bg-[#154565]/[0.07] hover:text-[#154565]",
   ].join(" ");
 }
 
@@ -201,13 +204,6 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
       <li role="none">
         <button onClick={() => onNavigate(config.href!)} className={navLinkCls(isActive)}>
           <span>{config.label}</span>
-          {/* underline */}
-          <span
-            className={`absolute bottom-0 left-0 right-0 h-[1.5px] rounded-full bg-gradient-to-r from-[#154565] to-[#793146] transition-transform duration-250 origin-left ${
-              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-            }`}
-            aria-hidden="true"
-          />
         </button>
       </li>
     );
@@ -233,13 +229,6 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
           size={13}
           aria-hidden="true"
           className={`mt-px transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-        />
-        {/* underline */}
-        <span
-          className={`absolute bottom-0 left-0 right-0 h-[1.5px] rounded-full bg-gradient-to-r from-[#154565] to-[#793146] transition-transform duration-250 origin-left ${
-            isActive || isOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-          }`}
-          aria-hidden="true"
         />
       </button>
 
@@ -594,14 +583,6 @@ const Header: FC = () => {
                       onNavigate={navigate}
                     />
                   ))}
-                  <li className="py-3.5" role="none">
-                    <button
-                      onClick={() => navigate("/contact")}
-                      className="font-poppins font-semibold text-[14px] text-[#0d2b45] w-full text-left hover:text-[#154565] transition-colors"
-                    >
-                      Contact
-                    </button>
-                  </li>
                 </ul>
 
                 {/* Mobile CTA block */}

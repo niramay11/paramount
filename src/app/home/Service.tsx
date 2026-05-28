@@ -83,7 +83,7 @@ const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
       transition={{ type: "spring", stiffness: 340, damping: 20 }}
     >
       {React.createElement(service.icon, {
-        className: "w-[52px] h-[52px] [&_*]:fill-[#154565] text-[#154565]",
+        className: "w-[76px] h-[76px] [&_*]:fill-[#154565] text-[#154565]",
       })}
     </motion.div>
 
