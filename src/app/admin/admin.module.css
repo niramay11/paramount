@@ -152,6 +152,17 @@
   transition: background .15s;
 }
 .logoutBtn:hover { background: rgba(255,255,255,.18); color: #fff; }
+.backLink {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .15s;
+  white-space: nowrap;
+}
+.backLink:hover { color: rgba(255,255,255,.9); }
 
 /* ── Toolbar ── */
 .toolbar {
@@ -299,6 +310,22 @@
   transition: background .12s;
 }
 .deleteBtn:hover { background: #fee2e2; }
+.viewBtn {
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--ink-3);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: border-color .12s, color .12s;
+}
+.viewBtn:hover { border-color: var(--navy-3); color: var(--navy); }
 .confirmRow {
   display: flex;
   align-items: center;
@@ -507,6 +534,72 @@
   margin-top: 2px;
 }
 
+/* ── Pagination ── */
+.pagination {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 14px 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pageInfo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  flex: 1;
+  white-space: nowrap;
+}
+.pageControls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.pageBtn {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .12s, border-color .12s, color .12s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageBtn:hover:not(:disabled) { background: var(--navy-50); border-color: var(--navy-3); color: var(--navy); }
+.pageBtn:disabled { opacity: .4; cursor: not-allowed; }
+.pageBtnActive {
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+.pageEllipsis {
+  min-width: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-3);
+  user-select: none;
+}
+.pageSizeSelect {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--ink-2);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.pageSizeSelect:focus { border-color: var(--navy-3); }
+
 /* ── Toast ── */
 .toast {
   position: fixed;
@@ -531,9 +624,159 @@
   to   { transform: translateY(0); opacity: 1; }
 }
 
+/* ── Panel Tabs ── */
+.panelTabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.panelTab {
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: inherit;
+  color: rgba(255,255,255,.6);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+  white-space: nowrap;
+}
+.panelTab:hover { color: rgba(255,255,255,.9); }
+.panelTabActive {
+  background: rgba(255,255,255,.18);
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* ── Category badges ── */
+.categoryFeatured {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}
+.categorySpecialty {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #fce7f3;
+  color: #9d174d;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Carousel panel ── */
+.carouselPanel {
+  padding: 24px 28px;
+  max-width: 1100px;
+}
+.uploadZone {
+  background: #fff;
+  border: 1.5px dashed var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+.uploadZoneTitle {
+  width: 100%;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.fileInputLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 180px;
+}
+.fileInput {
+  font-size: 13px;
+  color: var(--ink-2);
+  padding: 6px 0;
+  cursor: pointer;
+}
+.carouselGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.carouselCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.carouselThumb {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-50);
+  padding: 12px;
+}
+.carouselThumb img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+.carouselCardMeta {
+  padding: 8px 10px;
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.carouselCardOrder {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-family: 'JetBrains Mono', monospace;
+}
+.carouselDeleteBtn {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #fca5a5;
+  background: var(--red-soft);
+  color: var(--red);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.14s;
+}
+.carouselDeleteBtn:hover { background: #fee2e2; }
+.carouselEmpty {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
 @media (max-width: 700px) {
   .formGrid { grid-template-columns: 1fr; }
   .toolbar { padding: 16px 16px 0; }
   .tableWrap { padding: 12px 16px 60px; }
   .topBar { padding: 0 16px; }
+  .carouselPanel { padding: 16px; }
 }

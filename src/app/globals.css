@@ -101,3 +101,22 @@ body {
 .footer-bg {
   background: linear-gradient(-0.72deg, rgb(106, 150, 176) -71.973%,rgb(21, 69, 101) 64.014%);
 }
+
+/* ── gradient divider — decorative section accent ── */
+.gradient-divider {
+  width: 48px;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #154565 0%, #793146 100%);
+}
+
+/* ── floatY — badge float animation ── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── animate-float utility ── */
+.animate-float {
+  animation: floatY 4s ease-in-out infinite;
+}

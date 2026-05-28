@@ -216,8 +216,18 @@ export default function DictionaryClient({ categories }: { categories: TestCateg
     <div className={s.wrapper}>
       {/* ── Hero ── */}
       <section className={s.hero}>
+        {/* 3D background */}
+        <div className={s.heroBg}>
+          <div className={s.gridWrap}>
+            <div className={s.gridPlane} />
+          </div>
+          <div className={s.orbit1} />
+          <div className={s.orbit2} />
+          <div className={s.orbit3} />
+        </div>
+
         <div className={s.heroInner}>
-          <p className={s.eyebrow}>Reference · Test Directory</p>
+          <p className={s.eyebrow}>Test Directory</p>
           <h1 className={s.heroTitle}>
             Find a test. <em>Order with confidence.</em>
           </h1>
@@ -239,9 +249,6 @@ export default function DictionaryClient({ categories }: { categories: TestCateg
               autoComplete="off"
             />
           </div>
-          <p className={s.searchHint}>
-            Press <kbd>/</kbd> to focus search · <kbd>Esc</kbd> to close panel
-          </p>
         </div>
       </section>
 

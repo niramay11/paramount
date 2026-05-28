@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Sora, Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/component/Header";
+import ConditionalHeader from "@/component/ConditionalHeader";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -89,7 +89,7 @@ export default function RootLayout({
           antialiased
         `}
       >
-        <Header />
+        <ConditionalHeader />
         {children}
       </body>
     </html>

@@ -34,6 +34,20 @@ interface FlatTest extends TestEntry {
   sectionName: string;
 }
 
+interface InsuranceProvider {
+  id: string;
+  name: string;
+  category: "featured" | "specialty";
+  sort_order: number;
+  image_url?: string | null;
+  storage_path?: string | null;
+}
+interface InsForm {
+  name: string;
+  category: "featured" | "specialty";
+  sort_order: number;
+}
+
 interface FormState {
   categoryId: string;
   sectionId: string;
@@ -142,12 +156,14 @@ const EMPTY_FORM: FormState = {
   performingLab: "", cptCodes: "", tatForResult: "", methodology: "",
 };
 
+const INS_EMPTY: InsForm = { name: "", category: "featured", sort_order: 0 };
+
 /* ── Toast ── */
 type Toast = { msg: string; type: "success" | "error" } | null;
 
 /* ── Main component ── */
 export default function AdminDashboard() {
-  const [screen, setScreen] = useState<"login" | "dashboard">("login");
+  const [screen, setScreen] = useState<"checking" | "login" | "dashboard">("checking");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -164,11 +180,31 @@ export default function AdminDashboard() {
   const [deleteUid, setDeleteUid] = useState<string | null>(null);
   const [toast, setToast] = useState<Toast>(null);
 
-  /* Check existing session on mount */
+  /* ── Pagination ── */
+  const [page, setPage]         = useState(1);
+  const [pageSize, setPageSize] = useState(25);
+
+  /* ── Panel ── */
+  const [panel, setPanel] = useState<"tests" | "insurance">("tests");
+
+  /* ── Insurance ── */
+  const [insuranceProviders, setInsuranceProviders] = useState<InsuranceProvider[]>([]);
+  const [insDrawerOpen, setInsDrawerOpen] = useState(false);
+  const [insEditId, setInsEditId] = useState<string | null>(null);
+  const [insForm, setInsForm] = useState<InsForm>(INS_EMPTY);
+  const [insDeleteId, setInsDeleteId] = useState<string | null>(null);
+  const [insImageFile, setInsImageFile] = useState<File | null>(null);
+  const [insImagePreview, setInsImagePreview] = useState<string | null>(null);
+  const [insRemoveImage, setInsRemoveImage] = useState(false);
+
+  /* Check existing session on mount — avoids false "logged out" on hard refresh */
   useEffect(() => {
     fetch("/api/admin/tests")
-      .then((r) => { if (r.ok) { setScreen("dashboard"); fetchData(); } })
-      .catch(() => {});
+      .then((r) => {
+        if (r.ok) { setScreen("dashboard"); fetchData(); fetchInsurance(); }
+        else       { setScreen("login"); }
+      })
+      .catch(() => setScreen("login"));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -214,6 +250,7 @@ export default function AdminDashboard() {
     setScreen("login");
     setPassword("");
     setCategories([]);
+    setInsuranceProviders([]);
   }
 
   /* ── Data ── */
@@ -221,6 +258,12 @@ export default function AdminDashboard() {
     const r = await fetch("/api/admin/tests");
     if (!r.ok) return;
     setCategories(await r.json());
+  }
+
+  async function fetchInsurance() {
+    const r = await fetch("/api/admin/insurance");
+    if (!r.ok) return;
+    setInsuranceProviders(await r.json());
   }
 
   /* ── Flat tests for table ── */
@@ -239,6 +282,15 @@ export default function AdminDashboard() {
     }
     return list;
   }, [allTests, search, filterCat]);
+
+  /* Reset to page 1 whenever filter or search changes */
+  useEffect(() => { setPage(1); }, [search, filterCat, pageSize]);
+
+  /* ── Paginated slice ── */
+  const totalPages  = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const safeePage   = Math.min(page, totalPages);
+  const pageStart   = (safeePage - 1) * pageSize;
+  const pageRows    = filtered.slice(pageStart, pageStart + pageSize);
 
   /* ── Sections for current category in form ── */
   const formSections = useMemo(() => {
@@ -330,6 +382,52 @@ export default function AdminDashboard() {
     showToast("Test deleted.");
   }
 
+  /* ── Insurance Save ── */
+  async function handleInsSave() {
+    if (!insForm.name.trim()) { showToast("Name is required.", "error"); return; }
+    setSaving(true);
+    try {
+      const fd = new FormData();
+      fd.append("name", insForm.name.trim());
+      fd.append("category", insForm.category);
+      fd.append("sort_order", String(insForm.sort_order));
+      if (insImageFile) fd.append("image", insImageFile);
+      if (insRemoveImage) fd.append("remove_image", "true");
+
+      const url = insEditId ? `/api/admin/insurance/${insEditId}` : "/api/admin/insurance";
+      const r = await fetch(url, { method: insEditId ? "PUT" : "POST", body: fd });
+      if (!r.ok) { showToast("Save failed.", "error"); return; }
+      await fetchInsurance();
+      setInsDrawerOpen(false);
+      setInsImageFile(null);
+      setInsImagePreview(null);
+      setInsRemoveImage(false);
+      showToast(insEditId ? "Provider updated." : "Provider added.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  /* ── Insurance Delete ── */
+  async function handleInsDelete(id: string) {
+    const r = await fetch(`/api/admin/insurance/${id}`, { method: "DELETE" });
+    if (!r.ok) { showToast("Delete failed.", "error"); return; }
+    await fetchInsurance();
+    setInsDeleteId(null);
+    showToast("Provider deleted.");
+  }
+
+  /* ═══════════════════ CHECKING SCREEN ═══════════════════ */
+  if (screen === "checking") {
+    return (
+      <div className={s.wrap} style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "#6b7280", letterSpacing: "0.06em" }}>
+          Verifying session…
+        </p>
+      </div>
+    );
+  }
+
   /* ═══════════════════ LOGIN SCREEN ═══════════════════ */
   if (screen === "login") {
     return (
@@ -366,49 +464,84 @@ export default function AdminDashboard() {
       {/* Top bar */}
       <div className={s.topBar}>
         <div className={s.topBarBrand}>
-          Test Directory <span>/</span> Admin
+          Paramount <span>/</span> Admin
         </div>
-        <div className={s.topBarMeta}>{allTests.length} tests</div>
+        <div className={s.panelTabs}>
+          <button
+            className={`${s.panelTab} ${panel === "tests" ? s.panelTabActive : ""}`}
+            onClick={() => setPanel("tests")}
+          >
+            Tests
+          </button>
+          <button
+            className={`${s.panelTab} ${panel === "insurance" ? s.panelTabActive : ""}`}
+            onClick={() => setPanel("insurance")}
+          >
+            Insurance
+          </button>
+        </div>
+        <div className={s.topBarMeta}>
+          {panel === "tests" ? `${allTests.length} tests` : `${insuranceProviders.length} providers`}
+        </div>
+        <a href="/test-dictionary" target="_blank" rel="noopener noreferrer" className={s.backLink}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          View Live
+        </a>
         <button className={s.logoutBtn} onClick={logout}>Sign out</button>
       </div>
 
       {/* Toolbar */}
       <div className={s.toolbar}>
-        <div className={s.searchWrap}>
-          <svg className={s.searchIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-          </svg>
-          <input
-            className={s.searchInput}
-            type="text"
-            placeholder="Search by name, code, lab…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
+        {panel === "tests" ? (
+          <>
+            <div className={s.searchWrap}>
+              <svg className={s.searchIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                className={s.searchInput}
+                type="text"
+                placeholder="Search by name, code, lab…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
 
-        {/* Category filter */}
-        <select
-          className={s.formSelect}
-          style={{ width: 180 }}
-          value={filterCat}
-          onChange={(e) => setFilterCat(e.target.value)}
-        >
-          <option value="all">All categories</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>{c.name}</option>
-          ))}
-        </select>
+            <select
+              className={s.formSelect}
+              style={{ width: 180 }}
+              value={filterCat}
+              onChange={(e) => setFilterCat(e.target.value)}
+            >
+              <option value="all">All categories</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
 
-        <button className={s.addBtn} onClick={openAdd}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-          Add Test
-        </button>
+            <button className={s.addBtn} onClick={openAdd}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              Add Test
+            </button>
+          </>
+        ) : (
+          <button className={s.addBtn} onClick={() => { setInsForm(INS_EMPTY); setInsEditId(null); setInsImageFile(null); setInsImagePreview(null); setInsRemoveImage(false); setInsDrawerOpen(true); }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Add Provider
+          </button>
+        )}
       </div>
 
-      {/* Table */}
+      {/* Test Directory Table */}
+      {panel === "tests" && (
       <div className={s.tableWrap}>
         <table className={s.table}>
           <thead className={s.thead}>
@@ -423,12 +556,12 @@ export default function AdminDashboard() {
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 ? (
+            {pageRows.length === 0 ? (
               <tr className={s.emptyRow}>
                 <td colSpan={7}>No tests found.</td>
               </tr>
             ) : (
-              filtered.map((t) => (
+              pageRows.map((t) => (
                 <tr key={t._uid} className={s.tr}>
                   <td className={s.td}><span className={s.codeChip}>{t.code}</span></td>
                   <td className={s.td}>
@@ -453,6 +586,20 @@ export default function AdminDashboard() {
                       </div>
                     ) : (
                       <div className={s.actions}>
+                        <a
+                          href={`/test-dictionary?search=${encodeURIComponent(t.code)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={s.viewBtn}
+                          title="View on public test directory"
+                        >
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                          </svg>
+                          View
+                        </a>
                         <button className={s.editBtn} onClick={() => openEdit(t)}>Edit</button>
                         <button className={s.deleteBtn} onClick={() => setDeleteUid(t._uid)}>Delete</button>
                       </div>
@@ -464,6 +611,158 @@ export default function AdminDashboard() {
           </tbody>
         </table>
       </div>
+      )}
+
+      {/* Insurance Table */}
+      {panel === "insurance" && (
+        <div className={s.tableWrap}>
+          <table className={s.table}>
+            <thead className={s.thead}>
+              <tr>
+                <th style={{ width: 52 }}>Logo</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Sort Order</th>
+                <th style={{ width: 120 }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {insuranceProviders.length === 0 ? (
+                <tr className={s.emptyRow}>
+                  <td colSpan={5}>No providers yet. Add one above.</td>
+                </tr>
+              ) : (
+                insuranceProviders.map((p) => (
+                  <tr key={p.id} className={s.tr}>
+                    <td className={s.td}>
+                      {p.image_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.image_url} alt={p.name} style={{ width: 36, height: 36, objectFit: "contain", borderRadius: 4, background: "#f3f4f6" }} />
+                      ) : (
+                        <div style={{ width: 36, height: 36, borderRadius: 4, background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 15-5-5L5 21" />
+                          </svg>
+                        </div>
+                      )}
+                    </td>
+                    <td className={s.td}><div className={s.testName}>{p.name}</div></td>
+                    <td className={s.td}>
+                      <span className={p.category === "featured" ? s.categoryFeatured : s.categorySpecialty}>
+                        {p.category === "featured" ? "Featured" : "Specialty"}
+                      </span>
+                    </td>
+                    <td className={s.td}><span className={s.catLabel}>{p.sort_order}</span></td>
+                    <td className={s.td}>
+                      {insDeleteId === p.id ? (
+                        <div className={s.confirmRow}>
+                          <span className={s.confirmText}>Delete?</span>
+                          <button className={s.confirmYes} onClick={() => handleInsDelete(p.id)}>Yes</button>
+                          <button className={s.confirmNo} onClick={() => setInsDeleteId(null)}>No</button>
+                        </div>
+                      ) : (
+                        <div className={s.actions}>
+                          <button
+                            className={s.editBtn}
+                            onClick={() => {
+                              setInsForm({ name: p.name, category: p.category, sort_order: p.sort_order });
+                              setInsEditId(p.id);
+                              setInsImageFile(null);
+                              setInsImagePreview(p.image_url ?? null);
+                              setInsRemoveImage(false);
+                              setInsDrawerOpen(true);
+                            }}
+                          >Edit</button>
+                          <button className={s.deleteBtn} onClick={() => setInsDeleteId(p.id)}>Delete</button>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+
+      {/* ── Pagination bar ── */}
+      {panel === "tests" && filtered.length > 0 && (
+        <div className={s.pagination}>
+          <span className={s.pageInfo}>
+            {pageStart + 1}–{Math.min(pageStart + pageSize, filtered.length)} of {filtered.length} tests
+          </span>
+
+          <div className={s.pageControls}>
+            <button
+              className={s.pageBtn}
+              onClick={() => setPage(1)}
+              disabled={safeePage === 1}
+              aria-label="First page"
+            >
+              «
+            </button>
+            <button
+              className={s.pageBtn}
+              onClick={() => setPage(p => Math.max(1, p - 1))}
+              disabled={safeePage === 1}
+              aria-label="Previous page"
+            >
+              ‹
+            </button>
+
+            {/* Page number pills */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter(n => n === 1 || n === totalPages || Math.abs(n - safeePage) <= 1)
+              .reduce<(number | "…")[]>((acc, n, idx, arr) => {
+                if (idx > 0 && n - (arr[idx - 1] as number) > 1) acc.push("…");
+                acc.push(n);
+                return acc;
+              }, [])
+              .map((item, idx) =>
+                item === "…" ? (
+                  <span key={`ellipsis-${idx}`} className={s.pageEllipsis}>…</span>
+                ) : (
+                  <button
+                    key={item}
+                    className={`${s.pageBtn} ${item === safeePage ? s.pageBtnActive : ""}`}
+                    onClick={() => setPage(item as number)}
+                  >
+                    {item}
+                  </button>
+                )
+              )}
+
+            <button
+              className={s.pageBtn}
+              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              disabled={safeePage === totalPages}
+              aria-label="Next page"
+            >
+              ›
+            </button>
+            <button
+              className={s.pageBtn}
+              onClick={() => setPage(totalPages)}
+              disabled={safeePage === totalPages}
+              aria-label="Last page"
+            >
+              »
+            </button>
+          </div>
+
+          <select
+            className={s.pageSizeSelect}
+            value={pageSize}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+            aria-label="Rows per page"
+          >
+            {[10, 25, 50, 100].map(n => (
+              <option key={n} value={n}>{n} / page</option>
+            ))}
+          </select>
+        </div>
+      )}
 
       {/* ── Add/Edit drawer ── */}
       {drawerOpen && (
@@ -702,6 +1001,99 @@ export default function AdminDashboard() {
               <button className={s.cancelBtn} onClick={closeDrawer}>Cancel</button>
               <button className={s.saveBtn} onClick={handleSave} disabled={saving}>
                 {saving ? "Saving…" : editingUid ? "Save Changes" : "Add Test"}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ── Insurance drawer ── */}
+      {insDrawerOpen && (
+        <>
+          <div className={s.backdrop} onClick={() => setInsDrawerOpen(false)} />
+          <div className={s.drawer}>
+            <div className={s.drawerHead}>
+              <div>
+                <h2 className={s.drawerHeadTitle}>
+                  {insEditId ? "Edit Provider" : "Add Provider"}
+                </h2>
+                <p className={s.drawerHeadSub}>
+                  {insEditId ? `Editing: ${insForm.name}` : "Fill in the details below"}
+                </p>
+              </div>
+              <button className={s.drawerCloseBtn} onClick={() => { setInsDrawerOpen(false); setInsImageFile(null); setInsImagePreview(null); setInsRemoveImage(false); }} aria-label="Close">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className={s.drawerBody}>
+              <div className={s.formSection}>Provider Details</div>
+              <div className={s.formGrid}>
+                <div className={`${s.formField} ${s.formGridFull}`}>
+                  <label className={s.formLabel}>Name *</label>
+                  <input
+                    className={s.formInput}
+                    value={insForm.name}
+                    onChange={(e) => setInsForm((f) => ({ ...f, name: e.target.value }))}
+                    placeholder="e.g. United Healthcare"
+                    autoFocus
+                  />
+                </div>
+                <div className={s.formField}>
+                  <label className={s.formLabel}>Category</label>
+                  <select
+                    className={s.formSelect}
+                    value={insForm.category}
+                    onChange={(e) => setInsForm((f) => ({ ...f, category: e.target.value as "featured" | "specialty" }))}
+                  >
+                    <option value="featured">Featured National &amp; Regional</option>
+                    <option value="specialty">Specialty &amp; Network Plans</option>
+                  </select>
+                </div>
+                <div className={s.formField}>
+                  <label className={s.formLabel}>Sort Order</label>
+                  <input
+                    type="number"
+                    className={s.formInput}
+                    value={insForm.sort_order}
+                    onChange={(e) => setInsForm((f) => ({ ...f, sort_order: Number(e.target.value) }))}
+                    min={0}
+                  />
+                  <span className={s.formHint}>Lower numbers appear first.</span>
+                </div>
+                <div className={`${s.formField} ${s.formGridFull}`}>
+                  <label className={s.formLabel}>Logo / Image (optional)</label>
+                  {insImagePreview && !insRemoveImage ? (
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={insImagePreview} alt="preview" style={{ width: 56, height: 56, objectFit: "contain", borderRadius: 6, border: "1px solid #e5e7eb", background: "#f9fafb" }} />
+                      <button
+                        type="button"
+                        className={s.deleteBtn}
+                        onClick={() => { setInsRemoveImage(true); setInsImageFile(null); setInsImagePreview(null); }}
+                      >Remove</button>
+                    </div>
+                  ) : null}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className={s.fileInput}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0] ?? null;
+                      setInsImageFile(f);
+                      setInsRemoveImage(false);
+                      if (f) setInsImagePreview(URL.createObjectURL(f));
+                    }}
+                  />
+                  <span className={s.formHint}>PNG, JPG, SVG, or WebP. Shown as logo on the insurance page.</span>
+                </div>
+              </div>
+            </div>
+            <div className={s.drawerFooter}>
+              <button className={s.cancelBtn} onClick={() => { setInsDrawerOpen(false); setInsImageFile(null); setInsImagePreview(null); setInsRemoveImage(false); }}>Cancel</button>
+              <button className={s.saveBtn} onClick={handleInsSave} disabled={saving}>
+                {saving ? "Saving…" : insEditId ? "Save Changes" : "Add Provider"}
               </button>
             </div>
           </div>
