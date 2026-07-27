@@ -421,7 +421,7 @@ export default function AdminDashboard() {
   if (screen === "checking") {
     return (
       <div className={s.wrap} style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "#6b7280", letterSpacing: "0.06em" }}>
+        <p style={{ fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: 12, color: "#6b7280", letterSpacing: "0.06em" }}>
           Verifying session…
         </p>
       </div>

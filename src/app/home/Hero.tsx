@@ -30,14 +30,18 @@ const DNAHelixBackground = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const setSize = () => {
-      if (canvas.offsetWidth > 0 && canvas.offsetHeight > 0) {
-        canvas.width  = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+    const setSize = (width: number, height: number) => {
+      if (width > 0 && height > 0) {
+        canvas.width  = width;
+        canvas.height = height;
       }
     };
-    setSize();
-    const ro = new ResizeObserver(setSize);
+    setSize(canvas.offsetWidth, canvas.offsetHeight);
+    const ro = new ResizeObserver(([entry]) => {
+      const box = entry.contentBoxSize?.[0];
+      if (box) setSize(box.inlineSize, box.blockSize);
+      else setSize(entry.contentRect.width, entry.contentRect.height);
+    });
     ro.observe(canvas);
 
     const NUM_RUNGS   = 46;
@@ -188,9 +192,13 @@ const ECGLine = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const setSize = () => { if (canvas.offsetWidth > 0 && canvas.offsetHeight > 0) { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; } };
-    setSize();
-    const ro = new ResizeObserver(setSize);
+    const setSize = (width: number, height: number) => { if (width > 0 && height > 0) { canvas.width = width; canvas.height = height; } };
+    setSize(canvas.offsetWidth, canvas.offsetHeight);
+    const ro = new ResizeObserver(([entry]) => {
+      const box = entry.contentBoxSize?.[0];
+      if (box) setSize(box.inlineSize, box.blockSize);
+      else setSize(entry.contentRect.width, entry.contentRect.height);
+    });
     ro.observe(canvas);
 
     const ecgY = (phase: number): number => {
