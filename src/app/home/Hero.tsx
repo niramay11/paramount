@@ -23,6 +23,8 @@ const TRUST = [
 
 /* ─── diagonal DNA helix — light elegant style ───────── */
 
+const FRAME_INTERVAL_MS = 1000 / 30; // ambient background — 30fps is plenty
+
 const DNAHelixBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -44,6 +46,11 @@ const DNAHelixBackground = () => {
     });
     ro.observe(canvas);
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let visible = true;
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+    io.observe(canvas);
+
     const NUM_RUNGS   = 46;
     const BB_PTS      = 120;
     const TURNS       = 4.8;
@@ -51,7 +58,7 @@ const DNAHelixBackground = () => {
     const SPEED       = 0.004;
     const DIAG_ANGLE  = Math.PI / 3.6;   // ≈ 50° diagonal
 
-    let rot = 0, raf: number;
+    let rot = 0, raf: number, lastTime = 0;
 
     type DrawOp = { z: number; fn: () => void };
     const proj = (x: number, z: number) => {
@@ -59,11 +66,10 @@ const DNAHelixBackground = () => {
       return { sx: x * s, scale: s };
     };
 
-    const frame = () => {
+    const draw = () => {
       const W = canvas.width, H = canvas.height;
-      if (!W || !H) { raf = requestAnimationFrame(frame); return; }
+      if (!W || !H) return;
       ctx.clearRect(0, 0, W, H);
-      rot += SPEED;
 
       const diag = Math.sqrt(W * W + H * H);
       const R  = Math.min(W, H) * 0.21;
@@ -175,10 +181,24 @@ const DNAHelixBackground = () => {
       ops.sort((a, b) => a.z - b.z);
       for (const op of ops) op.fn();
       ctx.restore();
-      raf = requestAnimationFrame(frame);
     };
-    frame();
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+
+    if (reduceMotion) {
+      draw();
+      return () => { io.disconnect(); ro.disconnect(); };
+    }
+
+    const ROT_PER_MS = (SPEED * 60) / 1000; // preserve original 60fps-equivalent speed
+    const frame = (time: number) => {
+      raf = requestAnimationFrame(frame);
+      if (!visible || time - lastTime < FRAME_INTERVAL_MS) return;
+      const dt = lastTime ? time - lastTime : 0;
+      lastTime = time;
+      rot += ROT_PER_MS * dt;
+      draw();
+    };
+    raf = requestAnimationFrame(frame);
+    return () => { cancelAnimationFrame(raf); io.disconnect(); ro.disconnect(); };
   }, []);
   return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none z-[2]" />;
 };
@@ -192,14 +212,11 @@ const ECGLine = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const setSize = (width: number, height: number) => { if (width > 0 && height > 0) { canvas.width = width; canvas.height = height; } };
-    setSize(canvas.offsetWidth, canvas.offsetHeight);
-    const ro = new ResizeObserver(([entry]) => {
-      const box = entry.contentBoxSize?.[0];
-      if (box) setSize(box.inlineSize, box.blockSize);
-      else setSize(entry.contentRect.width, entry.contentRect.height);
-    });
-    ro.observe(canvas);
+
+    // Static baseline never changes except on resize — cached here so each
+    // frame just blits it back instead of recomputing sin() per pixel.
+    const baselineCanvas = document.createElement("canvas");
+    const baselineCtx = baselineCanvas.getContext("2d");
 
     const ecgY = (phase: number): number => {
       const p = ((phase % 1) + 1) % 1;
@@ -214,17 +231,49 @@ const ECGLine = () => {
       return 0;
     };
 
-    let dotX = 0, raf: number;
-    const frame = () => {
-      const W = canvas.width, H = canvas.height;
-      if (!W || !H) { raf = requestAnimationFrame(frame); return; }
-      ctx.clearRect(0, 0, W, H);
-      const period = W / 2.8, amp = H * 0.38, baseline = H * 0.52;
-      dotX = (dotX + 2.2) % (W + 80);
+    let period = 0, amp = 0, baseline = 0;
 
-      ctx.beginPath();
-      for (let x = 0; x <= W; x++) { const y = baseline - ecgY(x / period) * amp; x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
-      ctx.strokeStyle = "rgba(21,69,101,0.11)"; ctx.lineWidth = 1.0; ctx.stroke();
+    const renderBaseline = (W: number, H: number) => {
+      if (!baselineCtx) return;
+      baselineCanvas.width = W;
+      baselineCanvas.height = H;
+      period = W / 2.8; amp = H * 0.38; baseline = H * 0.52;
+      baselineCtx.clearRect(0, 0, W, H);
+      baselineCtx.beginPath();
+      for (let x = 0; x <= W; x++) {
+        const y = baseline - ecgY(x / period) * amp;
+        x === 0 ? baselineCtx.moveTo(x, y) : baselineCtx.lineTo(x, y);
+      }
+      baselineCtx.strokeStyle = "rgba(21,69,101,0.11)"; baselineCtx.lineWidth = 1.0; baselineCtx.stroke();
+    };
+
+    const setSize = (width: number, height: number) => {
+      if (width > 0 && height > 0) {
+        canvas.width = width; canvas.height = height;
+        renderBaseline(width, height);
+      }
+    };
+    setSize(canvas.offsetWidth, canvas.offsetHeight);
+    const ro = new ResizeObserver(([entry]) => {
+      const box = entry.contentBoxSize?.[0];
+      if (box) setSize(box.inlineSize, box.blockSize);
+      else setSize(entry.contentRect.width, entry.contentRect.height);
+    });
+    ro.observe(canvas);
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let visible = true;
+    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+    io.observe(canvas);
+
+    let dotX = 0, raf: number, lastTime = 0;
+
+    const draw = (dxStep: number) => {
+      const W = canvas.width, H = canvas.height;
+      if (!W || !H) return;
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(baselineCanvas, 0, 0);
+      dotX = (dotX + dxStep) % (W + 80);
 
       const trailLen = 115, tx0 = Math.max(0, dotX - trailLen);
       if (dotX > 0 && tx0 < W) {
@@ -254,10 +303,25 @@ const ECGLine = () => {
         ctx.beginPath(); ctx.arc(dotX, dy, glowR, 0, Math.PI * 2); ctx.fillStyle = glow; ctx.fill();
         ctx.beginPath(); ctx.arc(dotX, dy, dotR, 0, Math.PI * 2); ctx.fillStyle = `${dotColor}0.95)`; ctx.fill();
       }
-      raf = requestAnimationFrame(frame);
     };
-    frame();
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+
+    if (reduceMotion) {
+      // Static frame: baseline only, no moving dot/trail.
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(baselineCanvas, 0, 0);
+      return () => { io.disconnect(); ro.disconnect(); };
+    }
+
+    const PX_PER_MS = (2.2 * 60) / 1000; // preserve original 60fps-equivalent speed
+    const frame = (time: number) => {
+      raf = requestAnimationFrame(frame);
+      if (!visible || time - lastTime < FRAME_INTERVAL_MS) return;
+      const dt = lastTime ? time - lastTime : 0;
+      lastTime = time;
+      draw(PX_PER_MS * dt);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => { cancelAnimationFrame(raf); io.disconnect(); ro.disconnect(); };
   }, []);
   return <canvas ref={canvasRef} aria-hidden="true" className="w-full h-full" />;
 };
