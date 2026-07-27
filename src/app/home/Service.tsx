@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRightIcon } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import SectionHeader from "@/component/SectionHeader";
 import { STAGGER_SM, cardReveal, SPRING_BRISK, VIEWPORT_ONCE } from "@/lib/motion";
 import Womenblack     from "@/assets/WomenBlack";
@@ -64,7 +64,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
-  <motion.article
+  <m.article
     variants={reduced ? {} : cardReveal}
     whileHover={
       reduced
@@ -77,7 +77,7 @@ const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
     style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
   >
     {/* Icon — bare, no background container, matching reference */}
-    <motion.div
+    <m.div
       className="flex items-center justify-center"
       whileHover={reduced ? {} : { scale: 1.12, rotate: -4 }}
       transition={{ type: "spring", stiffness: 340, damping: 20 }}
@@ -85,7 +85,7 @@ const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
       {React.createElement(service.icon, {
         className: "w-[76px] h-[76px] [&_*]:fill-[#154565] text-[#154565]",
       })}
-    </motion.div>
+    </m.div>
 
     {/* Content */}
     <div className="flex-1 flex flex-col gap-2.5">
@@ -102,7 +102,7 @@ const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
       <span>Learn more</span>
       <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
     </div>
-  </motion.article>
+  </m.article>
 );
 
 /* ─── decorative background blobs ───────────────────── */
@@ -188,7 +188,7 @@ const Service = () => {
         />
 
         {/* Cards */}
-        <motion.div
+        <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
           variants={reduced ? {} : STAGGER_SM}
           initial="hidden"
@@ -198,17 +198,17 @@ const Service = () => {
           {SERVICES.map((service) => (
             <ServiceCard key={service.title} service={service} reduced={reduced} />
           ))}
-        </motion.div>
+        </m.div>
 
         {/* CTA */}
-        <motion.div
+        <m.div
           className="flex justify-center mt-14"
           initial={reduced ? {} : { opacity: 0, y: 16 }}
           whileInView={reduced ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.38, ease: "easeOut" as const }}
         >
-          <motion.button
+          <m.button
             onClick={() => router.push("/services")}
             className="group relative flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold font-sora text-white overflow-hidden button-bg"
             whileHover={reduced ? {} : { scale: 1.04, opacity: 0.9 }}
@@ -218,8 +218,8 @@ const Service = () => {
           >
             <span>View All Services</span>
             <ArrowRightIcon className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
-          </motion.button>
-        </motion.div>
+          </m.button>
+        </m.div>
 
       </div>
     </section>

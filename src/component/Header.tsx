@@ -8,7 +8,7 @@ import React, {
 import Logo from "../../public/paramount_logo.svg";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import {
   Menu, X, ChevronDown, PhoneIcon,
   CreditCardIcon, ClipboardListIcon, PencilIcon,
@@ -234,7 +234,7 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             key="dd"
             variants={dropdownV}
             initial="hidden"
@@ -261,7 +261,7 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
                 onKeyDown={(e) => handleItemKey(e, idx, config.submenu!.length)}
               />
             ))}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </li>
@@ -309,7 +309,7 @@ const MobileNavItem: FC<MobileNavItemProps> = ({ config, isOpen, onToggle, onNav
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             key="m-sub"
             variants={mobileSubV}
             initial="hidden"
@@ -329,7 +329,7 @@ const MobileNavItem: FC<MobileNavItemProps> = ({ config, isOpen, onToggle, onNav
                 </button>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </li>
@@ -423,7 +423,7 @@ const Header: FC = () => {
       {/* ── Announcement strip ─────────────────────────────── */}
       <AnimatePresence>
         {showBanner && (
-          <motion.div
+          <m.div
             key="banner"
             initial={{ height: 0,      opacity: 0 }}
             animate={{ height: "auto", opacity: 1, transition: { duration: 0.22 } }}
@@ -451,7 +451,7 @@ const Header: FC = () => {
                 <X size={12} aria-hidden="true" />
               </button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -518,7 +518,7 @@ const Header: FC = () => {
               <span className="h-5 w-px bg-gray-200" aria-hidden="true" />
 
               {/* Book CTA */}
-              <motion.button
+              <m.button
                 onClick={() => navigate("/contact")}
                 className="flex items-center gap-2 px-5 py-2 rounded-xl text-white text-[12.5px] font-poppins font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                 style={{ background: BRAND_GRADIENT }}
@@ -529,7 +529,7 @@ const Header: FC = () => {
               >
                 Book Appointment
                 <ArrowRightIcon className="w-3.5 h-3.5" aria-hidden="true" />
-              </motion.button>
+              </m.button>
             </div>
 
             {/* Mobile hamburger */}
@@ -541,7 +541,7 @@ const Header: FC = () => {
               aria-controls="mobile-nav"
             >
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span
+                <m.span
                   key={menuOpen ? "x" : "m"}
                   variants={hamburgerV}
                   initial="hidden"
@@ -552,7 +552,7 @@ const Header: FC = () => {
                   {menuOpen
                     ? <X    size={24} aria-hidden="true" />
                     : <Menu size={24} aria-hidden="true" />}
-                </motion.span>
+                </m.span>
               </AnimatePresence>
             </button>
 
@@ -562,7 +562,7 @@ const Header: FC = () => {
         {/* Mobile nav */}
         <AnimatePresence>
           {menuOpen && (
-            <motion.nav
+            <m.nav
               key="mob-nav"
               id="mobile-nav"
               variants={mobileMenuV}
@@ -604,7 +604,7 @@ const Header: FC = () => {
                   </button>
                 </div>
               </div>
-            </motion.nav>
+            </m.nav>
           )}
         </AnimatePresence>
       </header>

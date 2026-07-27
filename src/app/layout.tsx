@@ -11,6 +11,7 @@ import {
 import "./globals.css";
 import ConditionalHeader from "@/component/ConditionalHeader";
 import JsonLd from "@/component/JsonLd";
+import MotionProvider from "@/component/MotionProvider";
 
 const SITE_URL = "https://www.myparamountlab.com";
 
@@ -138,8 +139,10 @@ export default function RootLayout({
         `}
       >
         <JsonLd data={medicalBusinessJsonLd} />
-        <ConditionalHeader />
-        {children}
+        <MotionProvider>
+          <ConditionalHeader />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

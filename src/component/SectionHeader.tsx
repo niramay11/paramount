@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { fadeUp, VIEWPORT_ONCE } from "@/lib/motion";
 
 interface SectionHeaderProps {
@@ -23,7 +23,7 @@ export default function SectionHeader({
   const reduced = useReducedMotion();
 
   return (
-    <motion.header
+    <m.header
       className={`flex flex-col gap-3 mb-14 ${center ? "items-center text-center" : "items-start"} ${className}`}
       variants={reduced ? {} : fadeUp}
       initial="hidden"
@@ -50,6 +50,6 @@ export default function SectionHeader({
           {body}
         </p>
       )}
-    </motion.header>
+    </m.header>
   );
 }
