@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins, Sora, Inter, Open_Sans } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import ConditionalHeader from "@/component/ConditionalHeader";
 import JsonLd from "@/component/JsonLd";
 import MotionProvider from "@/component/MotionProvider";
+
+const GA_MEASUREMENT_ID = "G-JNRBVHE7MV";
 
 const SITE_URL = "https://www.myparamountlab.com";
 
@@ -114,6 +117,7 @@ export default function RootLayout({
           <ConditionalHeader />
           {children}
         </MotionProvider>
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
