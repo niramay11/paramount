@@ -202,7 +202,7 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
   if (!config.submenu) {
     return (
       <li role="none">
-        <button onClick={() => onNavigate(config.href!)} className={navLinkCls(isActive)}>
+        <button onClick={() => onNavigate(config.href!)} className={navLinkCls(isActive)} role="menuitem">
           <span>{config.label}</span>
         </button>
       </li>
@@ -223,6 +223,7 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
         className={navLinkCls(isActive || isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="menu"
+        role="menuitem"
       >
         <span>{config.label}</span>
         <ChevronDown
