@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Poppins,
-  Sora,
-  Inter,
-  Open_Sans,
-  Fraunces,
-  Geist,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Poppins, Sora, Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import ConditionalHeader from "@/component/ConditionalHeader";
 import JsonLd from "@/component/JsonLd";
@@ -37,24 +29,6 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
   weight: ["400", "700"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -132,9 +106,6 @@ export default function RootLayout({
           ${sora.variable}
           ${inter.variable}
           ${openSans.variable}
-          ${fraunces.variable}
-          ${geist.variable}
-          ${jetbrainsMono.variable}
           antialiased
         `}
       >
