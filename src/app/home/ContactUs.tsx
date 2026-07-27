@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Contact_Dr from "../../../public/contact_dr.png";
 import Image from "next/image";
-import { PhoneIcon, ArrowUpRightIcon, ClockIcon, MailIcon } from "lucide-react";
+import { PhoneIcon, ArrowUpRightIcon, ClockIcon, MailIcon, CheckIcon } from "lucide-react";
 
 /* ─── subject options ──────────────────────────────────── */
 
@@ -171,8 +171,9 @@ const ContactUs = () => {
 
             {/* Status messages */}
             {submitStatus === "success" && (
-              <div className="mb-5 p-3.5 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm font-sora">
-                ✓ Your inquiry has been submitted successfully! We&apos;ll be in touch shortly.
+              <div className="mb-5 p-3.5 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm font-sora flex items-center gap-1.5">
+                <CheckIcon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                Your inquiry has been submitted successfully! We&apos;ll be in touch shortly.
               </div>
             )}
             {submitStatus === "error" && (

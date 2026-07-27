@@ -439,9 +439,10 @@ const Header: FC = () => {
               </span>
               <button
                 onClick={() => navigate("/contact")}
-                className="font-poppins text-[11.5px] font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity ml-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/60 rounded"
+                className="inline-flex items-center gap-1 font-poppins text-[11.5px] font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity ml-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/60 rounded"
               >
-                Book now →
+                Book now
+                <ArrowRightIcon className="w-3 h-3" aria-hidden="true" />
               </button>
               <button
                 onClick={() => setShowBanner(false)}

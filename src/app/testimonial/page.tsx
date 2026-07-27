@@ -3,6 +3,7 @@ import Footer from "@/component/Footer";
 import Page from "@/component/Page";
 import Image from "next/image";
 import React from "react";
+import { StarIcon } from "lucide-react";
 import TestimonialForm from "./TestimonialForm";
 
 export const metadata: Metadata = {
@@ -86,7 +87,7 @@ function MarqueeCard({ t }: { t: (typeof TESTIMONIALS)[0] }) {
           <p className="font-poppins text-[12.5px] font-semibold text-white leading-tight">{t.name}</p>
           <div className="flex gap-px mt-0.5">
             {Array.from({ length: t.rating }).map((_, i) => (
-              <span key={i} className="text-amber-400" style={{ fontSize: "11px" }}>★</span>
+              <StarIcon key={i} className="w-3 h-3 text-amber-400 fill-amber-400" aria-hidden="true" />
             ))}
           </div>
         </div>

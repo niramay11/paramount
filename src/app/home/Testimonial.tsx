@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image, { StaticImageData } from "next/image";
+import { StarIcon } from "lucide-react";
 import Doctor_1 from "../../../public/doctor_1.png";
 import Doctor_2 from "../../../public/doctor_2.png";
 import Doctor_3 from "../../../public/doctor_3.png";
@@ -48,7 +49,7 @@ function MarqueeCard({ t }: { t: Testimonial }) {
         </span>
         <div className="flex gap-px mt-1">
           {Array.from({ length: t.rating }).map((_, i) => (
-            <span key={i} className="text-amber-400" style={{ fontSize: "12px" }}>★</span>
+            <StarIcon key={i} className="w-3 h-3 text-amber-400 fill-amber-400" aria-hidden="true" />
           ))}
         </div>
       </div>
