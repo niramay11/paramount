@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Button from "@/component/Button";
 import Footer from "@/component/Footer";
 import Page from "@/component/Page";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Laboratory Forms & Requisitions | Paramount Diagnostic Lab",
+  description:
+    "Download lab requisition forms and patient documents from Paramount Diagnostic Lab, a CLIA-certified diagnostic lab in Edison, NJ.",
+  alternates: { canonical: "/laboratory-forms" },
+};
 
 const page = () => {
   return (

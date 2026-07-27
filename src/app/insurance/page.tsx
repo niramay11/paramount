@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Page from "@/component/Page";
 import Footer from "@/component/Footer";
 import InsuranceCarousel from "@/component/InsuranceCarousel";
 import SectionHeader from "@/component/SectionHeader";
 import { supabaseAdmin } from "@/lib/supabase";
 import { MailIcon, PhoneIcon } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Insurance & Billing | Paramount Diagnostic Lab, Edison NJ",
+  description:
+    "View accepted insurance providers and billing information for Paramount Diagnostic Lab, a CLIA-certified, CAP-accredited lab in Edison, NJ.",
+  alternates: { canonical: "/insurance" },
+};
 
 interface InsProvider {
   id: string;

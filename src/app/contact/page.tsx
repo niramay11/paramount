@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Page from "@/component/Page";
 import React from "react";
 import Footer from "@/component/Footer";
 import { HomeIcon, MailIcon, PhoneIcon, PrinterIcon, GlobeIcon } from "lucide-react";
 import ContactPageForm from "./ContactPageForm";
 import MapEmbed from "./MapEmbed";
+
+export const metadata: Metadata = {
+  title: "Contact & Location — Edison, NJ | Paramount Diagnostic Lab",
+  description:
+    "Visit Paramount Diagnostic Lab at 2177 Oak Tree Rd, Edison, NJ. Call (908) 834-8034. Mon-Sat hours, appointments & walk-ins.",
+  alternates: { canonical: "/contact" },
+};
 
 const INFO = [
   {

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Poppins, Sora, Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
 import ConditionalHeader from "@/component/ConditionalHeader";
+import JsonLd from "@/component/JsonLd";
+
+const SITE_URL = "https://www.myparamountlab.com";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,31 +31,25 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title:
     "Paramount Diagnostic Lab – Accurate, Reliable, and Compassionate Diagnostics",
   description:
     "Paramount Diagnostic Lab provides advanced diagnostic testing in New Jersey with precision, quality, and care. CLIA-certified and state-licensed, we ensure reliable results for healthcare providers and patients.",
-  keywords: [
-    "Paramount Diagnostic Lab",
-    "CLIA certified lab",
-    "New Jersey diagnostics",
-    "pathology lab",
-    "radiology services",
-    "accurate lab testing",
-    "medical diagnostics",
-    "healthcare lab NJ",
-  ],
   authors: [{ name: "Paramount Diagnostic Lab" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title:
       "Paramount Diagnostic Lab – Accurate, Reliable, and Compassionate Diagnostics",
     description:
       "Providing advanced diagnostic testing in New Jersey with precision, quality, and care. CLIA-certified and state-licensed laboratory services.",
-    url: "https://www.paramountdiagnosticlab.com", // replace with actual URL
+    url: SITE_URL,
     siteName: "Paramount Diagnostic Lab",
     images: [
       {
-        url: "/og-image.png", // add an Open Graph image in public folder
+        url: "/about_hero.png",
         width: 1200,
         height: 630,
         alt: "Paramount Diagnostic Lab",
@@ -67,10 +64,32 @@ export const metadata: Metadata = {
       "Paramount Diagnostic Lab – Accurate, Reliable, and Compassionate Diagnostics",
     description:
       "Advanced diagnostic testing in New Jersey with precision and care. CLIA-certified and state-licensed laboratory.",
-    images: ["/og-image.png"], // same as Open Graph image
-    site: "@ParamountLab", // replace with actual Twitter handle
-    creator: "@ParamountLab", // replace with actual handle if exists
+    images: ["/about_hero.png"],
   },
+};
+
+const medicalBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": `${SITE_URL}/#business`,
+  name: "Paramount Diagnostic Lab",
+  url: SITE_URL,
+  telephone: "+19088348034",
+  email: "info@myparamountlab.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "2177 Oak Tree Rd, Ste 208",
+    addressLocality: "Edison",
+    addressRegion: "NJ",
+    postalCode: "08820",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.4311,
+    longitude: -74.3774,
+  },
+  medicalSpecialty: "Pathology",
 };
 
 export default function RootLayout({
@@ -89,6 +108,7 @@ export default function RootLayout({
           antialiased
         `}
       >
+        <JsonLd data={medicalBusinessJsonLd} />
         <ConditionalHeader />
         {children}
       </body>

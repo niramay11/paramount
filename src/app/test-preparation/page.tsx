@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Page from "@/component/Page";
 import Image from "next/image";
 import Footer from "@/component/Footer";
@@ -9,6 +10,13 @@ import {
   BeakerIcon,
   MicroscopeIcon,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Test Preparation Instructions | Paramount Diagnostic Lab",
+  description:
+    "Patient preparation instructions for lab tests at Paramount Diagnostic Lab, Edison, NJ — fasting, specimen, and appointment guidance.",
+  alternates: { canonical: "/test-preparation" },
+};
 
 /* ─── data ─────────────────────────────────────────────── */
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Page from "@/component/Page";
 import Image from "next/image";
 import React from "react";
@@ -16,6 +17,13 @@ import StoolTest from "../../assets/Stool Testing.jpg"
 import Covid from "../../assets/Covid 19.jpg"
 import RPP from "../../assets/Rpp.jpg"
 import Button from "@/component/Button";
+
+export const metadata: Metadata = {
+  title: "Lab Testing Services in Edison, NJ | Paramount Diagnostic Lab",
+  description:
+    "Explore diagnostic services: blood work, COVID-19, molecular, women's health, toxicology, pathology, and more in Edison, NJ.",
+  alternates: { canonical: "/services" },
+};
 
 const page = () => {
   const Services = [

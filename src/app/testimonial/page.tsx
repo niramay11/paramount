@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Footer from "@/component/Footer";
 import Page from "@/component/Page";
 import Image from "next/image";
 import React from "react";
 import TestimonialForm from "./TestimonialForm";
+
+export const metadata: Metadata = {
+  title: "Patient Testimonials | Paramount Diagnostic Lab",
+  description:
+    "Read what patients say about Paramount Diagnostic Lab, a CLIA-certified, CAP-accredited diagnostic lab in Edison, NJ.",
+  alternates: { canonical: "/testimonial" },
+};
 import Doctor_1 from "../../../public/doctor_1.png";
 import Doctor_2 from "../../../public/doctor_2.png";
 import Doctor_3 from "../../../public/doctor_3.png";
