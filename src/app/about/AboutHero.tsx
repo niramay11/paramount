@@ -13,9 +13,9 @@ const AboutHero = () => {
 
       {/* Content */}
       <div className="z-10 block relative w-full md:max-w-1/2 py-28">
-        <h3 className="font-poppins text-center md:text-left text-[#793146] font-semibold text-3xl  lg:text-4xl">
+        <h1 className="font-poppins text-center md:text-left text-[#793146] font-semibold text-3xl  lg:text-4xl">
           About Paramount Diagnostic Lab
-        </h3>
+        </h1>
         <p className="text-black leading-7 text-center md:text-left sm:leading-8 font-poppins mt-4 text-sm sm:text-base">
           Advancing Healthcare Through Precision Diagnostics in New Jersey At
           Paramount Diagnostic Lab, we believe that accurate diagnostics are the

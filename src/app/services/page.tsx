@@ -94,9 +94,9 @@ const page = () => {
       {/* Header Section */}
       <section className="flex justify-center text-center">
         <div className="max-w-screen-md">
-          <h3 className="font-poppins font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#154565]">
+          <h1 className="font-poppins font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#154565]">
             Our Services
-          </h3>
+          </h1>
           <p className="font-poppins font-semibold text-xl sm:text-2xl mt-6 text-[#1F4362]">
             Precision. Excellence. Trust in Every Test
           </p>

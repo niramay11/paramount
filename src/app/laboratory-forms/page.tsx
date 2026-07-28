@@ -17,15 +17,15 @@ const page = () => {
       {" "}
       {/* Header */}
       <div className="flex flex-col items-start justify-start my-8 px-4 sm:px-6 lg:px-0">
-        <h3 className="font-poppins text-[28px] sm:text-[36px] lg:text-[42px] font-semibold text-black">
+        <h1 className="font-poppins text-[28px] sm:text-[36px] lg:text-[42px] font-semibold text-black">
           Laboratory Forms
-        </h3>
+        </h1>
       </div>
       <section>
         <div className="flex flex-col items-start justify-start my-8 px-4 sm:px-6 lg:px-0">
-          <h3 className="font-poppins text-2xl font-semibold text-black">
+          <h2 className="font-poppins text-2xl font-semibold text-black">
             Office Forms
-          </h3>
+          </h2>
           <p className="font-poppins text-sm sm:text-base lg:text-[16px] text-[#707070] font-light mt-2">
             Complete online form and hit submit
           </p>
@@ -37,9 +37,9 @@ const page = () => {
           <Button className="w-max">Add-on / ICD-10 Req.</Button>
         </div>
         <div className="flex flex-col items-start justify-start my-8 px-4 sm:px-6 lg:px-0">
-          <h3 className="font-poppins text-2xl font-semibold text-black">
+          <h2 className="font-poppins text-2xl font-semibold text-black">
             Requisirion Forms
-          </h3>
+          </h2>
           <p className="font-poppins text-sm sm:text-base lg:text-[16px] text-[#707070] font-light mt-2">
             Complete online form and hit submit
           </p>
