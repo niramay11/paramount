@@ -4,6 +4,7 @@ import Footer from "@/component/Footer";
 import Page from "@/component/Page";
 import React, { useState } from "react";
 import { CheckCircleIcon, AlertCircleIcon, ShieldCheckIcon, ArrowRight } from "lucide-react";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 type FormState = {
   insuranceType: "medicare" | "private";
@@ -83,6 +84,7 @@ export default function BillingInsurance() {
 
   return (
     <Page>
+      <BreadcrumbJsonLd label="Update Billing & Insurance" path="/update-billing-insurance" />
       <section className="relative py-14">
         {/* Page background */}
         <div
@@ -279,6 +281,11 @@ export default function BillingInsurance() {
                   <>Submit Request <ArrowRight className="w-4 h-4" /></>
                 )}
               </button>
+
+              <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-[#94a3b8] font-poppins">
+                <ShieldCheckIcon className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                Your personal and insurance information is transmitted securely and used only to process this request.
+              </p>
 
             </form>
           </div>

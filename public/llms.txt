@@ -1,0 +1,18 @@
+# Paramount Diagnostic Lab
+
+> Paramount Diagnostic Lab is a CLIA-certified diagnostics and pathology laboratory located in Edison, New Jersey, offering blood work, molecular testing, women's health testing, toxicology, pathology, and related lab services to patients and referring physicians.
+
+- Address: 2177 Oak Tree Rd, Ste 208, Edison, NJ 08820, USA
+- Phone: +1 908 834 8034
+- Email: info@myparamountlab.com
+- Hours: Monday - Saturday, 7 AM - 6 PM
+
+## Key Pages
+
+- [Services](https://www.myparamountlab.com/services): Diagnostic lab service categories, including Women's Health, Molecular Testing, Chemistry, Immunoassay, Pathology, Toxicology, Biopsy, Wound Care, Stool Testing, COVID-19, and Respiratory Pathogen Panel testing.
+- [Test Dictionary](https://www.myparamountlab.com/test-dictionary): Directory of lab tests offered.
+- [Test Preparation](https://www.myparamountlab.com/test-preparation): Patient instructions for preparing for blood, urine, and stool tests, including fasting guidelines.
+- [Insurance](https://www.myparamountlab.com/insurance): Accepted insurance plans and billing information.
+- [About](https://www.myparamountlab.com/about): Background on Paramount Diagnostic Lab and its CLIA-certified testing processes.
+- [Contact](https://www.myparamountlab.com/contact): Location, hours, and contact form.
+- [Laboratory Forms](https://www.myparamountlab.com/laboratory-forms): Downloadable lab forms for patients and physicians.

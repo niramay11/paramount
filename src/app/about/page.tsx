@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Page from "@/component/Page";
 import React from "react";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 import AboutHero from "./AboutHero";
 import Whoweare from "./Whoweare";
 import LabDifference from "./LabDifference";
@@ -22,6 +23,7 @@ const page = () => {
   return (
     <Page className="overflow-hidden" >
       {" "}
+      <BreadcrumbJsonLd label="About Us" path="/about" />
       <div className="bg-tint" />
       <AboutHero />
       <Whoweare />

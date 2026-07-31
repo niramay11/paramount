@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { StarIcon } from "lucide-react";
 import TestimonialForm from "./TestimonialForm";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Patient Testimonials | Paramount Diagnostic Lab",
@@ -114,6 +115,7 @@ function MarqueeCard({ t }: { t: (typeof TESTIMONIALS)[0] }) {
 export default function TestimonialPage() {
   return (
     <Page>
+      <BreadcrumbJsonLd label="Testimonials" path="/testimonial" />
 
       {/* CSS animations */}
       <style>{`

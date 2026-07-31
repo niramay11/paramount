@@ -5,6 +5,7 @@ import Page from "@/component/Page";
 import CustomFileUpload from "@/component/Upload";
 import Image from "next/image";
 import LabPeople from "../../../public/lab_people.png";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 import React, { useState } from "react";
 import {
   CheckCircleIcon, AlertCircleIcon, ArrowRight,
@@ -94,6 +95,7 @@ export default function CareerPage() {
 
   return (
     <Page>
+      <BreadcrumbJsonLd label="Career" path="/career" />
 
       {/* ══ HERO — bg image + 3D rings + form ═════════════════ */}
       <section className="relative min-h-[680px]">

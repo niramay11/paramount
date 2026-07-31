@@ -5,6 +5,7 @@ import Footer from "@/component/Footer";
 import Image from "next/image";
 import React, { useState } from "react";
 import CareerPeople from "../../../public/career_people.png";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 import {
   CheckCircleIcon, AlertCircleIcon, ArrowRight,
   DollarSignIcon, HeartIcon, UsersIcon, BriefcaseIcon,
@@ -100,6 +101,7 @@ export default function JoinUsPage() {
 
   return (
     <Page>
+      <BreadcrumbJsonLd label="Join Us" path="/join-us" />
 
       {/* ══ HERO — image + text ════════════════════════════════ */}
       <section className="relative pt-12 pb-16">
@@ -311,6 +313,9 @@ export default function JoinUsPage() {
                   )}
                 </button>
               </div>
+              <p className="font-poppins text-[11px] text-[#94a3b8] leading-relaxed">
+                Your information is transmitted securely and used only to process this application.
+              </p>
 
             </form>
           </div>

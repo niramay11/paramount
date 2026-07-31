@@ -5,6 +5,7 @@ import InsuranceCarousel from "@/component/InsuranceCarousel";
 import SectionHeader from "@/component/SectionHeader";
 import { supabaseAdmin } from "@/lib/supabase";
 import { MailIcon, PhoneIcon } from "lucide-react";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Insurance & Billing | Paramount Diagnostic Lab, Edison NJ",
@@ -40,6 +41,7 @@ export default async function InsurancePage() {
 
   return (
     <Page>
+      <BreadcrumbJsonLd label="Insurance" path="/insurance" />
 
       {/* ══════════════════ HERO ══════════════════ */}
       <section className="relative pt-12 pb-0">

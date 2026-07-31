@@ -17,6 +17,7 @@ import StoolTest from "../../assets/Stool Testing.jpg"
 import Covid from "../../assets/Covid 19.jpg"
 import RPP from "../../assets/Rpp.jpg"
 import Button from "@/component/Button";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Lab Testing Services in Edison, NJ | Paramount Diagnostic Lab",
@@ -91,6 +92,7 @@ const page = () => {
 
   return (
     <Page className="mt-16 px-4 sm:px-6 lg:px-[10%]">
+      <BreadcrumbJsonLd label="Services" path="/services" />
       {/* Header Section */}
       <section className="flex justify-center text-center">
         <div className="max-w-screen-md">
@@ -118,6 +120,8 @@ const page = () => {
               src={service.image}
               alt={service.title}
               className="w-full h-[250px] object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={index < 3}
             />
             <div className="border border-[#B9B9B9] border-t-0 px-4 py-4 group-hover:bg-black transition-colors duration-300 rounded-b-2xl">
               <div className="flex flex-col gap-2">

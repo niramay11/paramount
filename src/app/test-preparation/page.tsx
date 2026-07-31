@@ -4,6 +4,7 @@ import Image from "next/image";
 import Footer from "@/component/Footer";
 import SectionHeader from "@/component/SectionHeader";
 import TestHand from "../../../public/test_hand.png";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 import {
   FlaskConicalIcon,
   DropletIcon,
@@ -107,6 +108,7 @@ const COMMON_TESTS = [
 export default function TestPreparationPage() {
   return (
     <Page>
+      <BreadcrumbJsonLd label="Test Preparation" path="/test-preparation" />
 
       {/* ══════════════════ HERO ══════════════════ */}
       <section className="relative pt-10 pb-0">

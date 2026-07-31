@@ -34,7 +34,7 @@ const OurWorkFlow = () => {
         </h3>
         <p className="text-black mt-4 text-sm sm:text-base leading-relaxed font-poppins">
           Paramount Diagnostic Lab is a trusted name in accurate, affordable,
-          and timely diagnostic testing. With NABL-accredited technology and
+          and timely diagnostic testing. With CLIA-certified technology and
           expert pathologists,
         </p>
       </div>

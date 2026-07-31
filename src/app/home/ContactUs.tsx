@@ -138,7 +138,7 @@ const ContactUs = () => {
                   </div>
                   <div>
                     <p className="text-[10px] text-white/45 uppercase tracking-widest font-inter mb-0.5">Email</p>
-                    <p className="text-sm font-semibold text-white">info@paramountdx.com</p>
+                    <p className="text-sm font-semibold text-white">info@myparamountlab.com</p>
                   </div>
                 </div>
 

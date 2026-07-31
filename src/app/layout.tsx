@@ -74,10 +74,11 @@ export const metadata: Metadata = {
 
 const medicalBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": "MedicalClinic",
   "@id": `${SITE_URL}/#business`,
   name: "Paramount Diagnostic Lab",
   url: SITE_URL,
+  image: `${SITE_URL}/about_hero.png`,
   telephone: "+19088348034",
   email: "info@myparamountlab.com",
   address: {
@@ -94,6 +95,19 @@ const medicalBusinessJsonLd = {
     longitude: -74.3774,
   },
   medicalSpecialty: "Pathology",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    opens: "07:00",
+    closes: "18:00",
+  },
 };
 
 export default function RootLayout({

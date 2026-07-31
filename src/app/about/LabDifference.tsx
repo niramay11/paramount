@@ -46,7 +46,7 @@ const LabDifference = () => {
           </h3>
           <p className="text-black leading-7 font-poppins mt-4 text-sm sm:text-base">
             Paramount Diagnostic Lab is a trusted name in accurate, affordable,
-            and timely diagnostic testing. With NABL-accredited processes,
+            and timely diagnostic testing. With CLIA-certified processes,
             reliable reporting, and advanced infrastructure, we consistently
             deliver healthcare excellence.
           </p>

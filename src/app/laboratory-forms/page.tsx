@@ -3,6 +3,7 @@ import Button from "@/component/Button";
 import Footer from "@/component/Footer";
 import Page from "@/component/Page";
 import React from "react";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Laboratory Forms & Requisitions | Paramount Diagnostic Lab",
@@ -15,6 +16,7 @@ const page = () => {
   return (
     <Page>
       {" "}
+      <BreadcrumbJsonLd label="Laboratory Forms" path="/laboratory-forms" />
       {/* Header */}
       <div className="flex flex-col items-start justify-start my-8 px-4 sm:px-6 lg:px-0">
         <h1 className="font-poppins text-[28px] sm:text-[36px] lg:text-[42px] font-semibold text-black">

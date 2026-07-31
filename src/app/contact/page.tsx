@@ -5,6 +5,7 @@ import Footer from "@/component/Footer";
 import { HomeIcon, MailIcon, PhoneIcon, PrinterIcon, GlobeIcon } from "lucide-react";
 import ContactPageForm from "./ContactPageForm";
 import MapEmbed from "./MapEmbed";
+import BreadcrumbJsonLd from "@/component/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Contact & Location — Edison, NJ | Paramount Diagnostic Lab",
@@ -49,6 +50,7 @@ const INFO = [
 export default function ContactPage() {
   return (
     <Page>
+      <BreadcrumbJsonLd label="Contact" path="/contact" />
 
       {/* ══ HEADER ════════════════════════════════════════════ */}
       <section className="relative pt-16 pb-12">

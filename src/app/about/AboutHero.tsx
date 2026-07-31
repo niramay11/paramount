@@ -1,13 +1,18 @@
 import React from "react";
+import Image from "next/image";
 
 const AboutHero = () => {
   return (
     <section className="relative py-12">
       {/* Background Image */}
-      <div className="absolute inset-0 w-screen left-1/2 translate-x-[-50%] h-full z-0">
-        <div
-          className="w-full h-full bg-cover bg-none md:bg-center"
-          style={{ backgroundImage: 'url("/about_hero.png")' }}
+      <div className="absolute inset-0 w-screen left-1/2 translate-x-[-50%] h-full z-0 hidden md:block" aria-hidden="true">
+        <Image
+          src="/about_hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
       </div>
 
