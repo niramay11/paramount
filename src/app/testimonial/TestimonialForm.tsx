@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { CheckCircleIcon, AlertCircleIcon, ArrowRight, Star } from "lucide-react";
 
 const fieldClass =
-  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-[#0d2b45] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#154565]/20 focus:border-[#154565] focus:bg-white transition-all duration-150";
+  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-ink placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-150";
 
 const labelClass =
-  "block font-poppins text-[11px] font-semibold tracking-wide text-[#4a6070] uppercase mb-1";
+  "block font-poppins text-[11px] font-semibold tracking-wide text-body uppercase mb-1";
 
 const TestimonialForm = () => {
   const [formData, setFormData]         = useState({ name: "", email: "", comment: "" });
@@ -58,7 +58,7 @@ const TestimonialForm = () => {
       {/* Gradient accent bar */}
       <div
         className="h-[3px]"
-        style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+        style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
       />
 
       <div className="p-6 sm:p-8">
@@ -88,7 +88,7 @@ const TestimonialForm = () => {
           {/* Interactive star rating */}
           <div>
             <label className={labelClass}>
-              Your Rating <span className="text-[#793146]">*</span>
+              Your Rating <span className="text-accent">*</span>
             </label>
             <div className="flex gap-1 mt-1.5">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -117,7 +117,7 @@ const TestimonialForm = () => {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="t-name" className={labelClass}>
-                Name <span className="text-[#793146]">*</span>
+                Name <span className="text-accent">*</span>
               </label>
               <input
                 id="t-name" name="name" value={formData.name}
@@ -127,7 +127,7 @@ const TestimonialForm = () => {
             </div>
             <div>
               <label htmlFor="t-email" className={labelClass}>
-                Email <span className="text-[#793146]">*</span>
+                Email <span className="text-accent">*</span>
               </label>
               <input
                 id="t-email" name="email" type="email" value={formData.email}
@@ -140,7 +140,7 @@ const TestimonialForm = () => {
           {/* Comment */}
           <div>
             <label htmlFor="t-comment" className={labelClass}>
-              Your Experience <span className="text-[#793146]">*</span>
+              Your Experience <span className="text-accent">*</span>
             </label>
             <textarea
               id="t-comment" name="comment" value={formData.comment}
@@ -152,14 +152,14 @@ const TestimonialForm = () => {
 
           {/* Footer row */}
           <div className="flex items-center justify-between pt-1">
-            <p className="font-poppins text-[11px] text-[#4a6070]">
-              <span className="text-[#793146]">*</span> required fields
+            <p className="font-poppins text-[11px] text-body">
+              <span className="text-accent">*</span> required fields
             </p>
             <button
               type="submit"
               disabled={isSubmitting || !rating}
               className="px-7 py-2.5 rounded-full text-[13px] font-poppins font-semibold text-white flex items-center gap-2 hover:opacity-90 transition-opacity duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
-              style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+              style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
             >
               {isSubmitting ? "Submitting…" : (
                 <>Submit Review <ArrowRight className="w-4 h-4" /></>

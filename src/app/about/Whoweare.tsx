@@ -17,7 +17,7 @@ const Whoweare = () => {
 
       {/* Text */}
       <div className="w-full lg:w-1/2 py-6 lg:py-12">
-        <h3 className="font-poppins text-[#793146] font-semibold text-center lg:text-left text-3xl sm:text-4xl lg:text-5xl leading-snug">
+        <h3 className="font-poppins text-accent font-semibold text-center lg:text-left text-3xl sm:text-4xl lg:text-5xl leading-snug">
           <span className="block">Our Story:</span>
           <span className="block text-[#A94C68]">Built on Excellence,</span>
           <span className="block text-[#C85C7B]">Driven by Innovation</span>

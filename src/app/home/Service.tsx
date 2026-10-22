@@ -83,22 +83,22 @@ const ServiceCard = ({ service, reduced }: ServiceCardProps) => (
       transition={{ type: "spring", stiffness: 340, damping: 20 }}
     >
       {React.createElement(service.icon, {
-        className: "w-[76px] h-[76px] [&_*]:fill-[#154565] text-[#154565]",
+        className: "w-[76px] h-[76px] [&_*]:fill-brand text-brand",
       })}
     </m.div>
 
     {/* Content */}
     <div className="flex-1 flex flex-col gap-2.5">
-      <h3 className="font-poppins text-[18px] font-bold text-[#0d2b45] leading-snug">
+      <h3 className="font-poppins text-[18px] font-bold text-ink leading-snug">
         {service.title}
       </h3>
-      <p className="font-poppins text-[13.5px] font-light text-[#4a6070] leading-relaxed">
+      <p className="font-poppins text-[13.5px] font-light text-body leading-relaxed">
         {service.description}
       </p>
     </div>
 
     {/* Learn more */}
-    <div className="flex items-center gap-1.5 text-[12.5px] font-semibold font-sora text-[#793146] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <div className="flex items-center gap-1.5 text-[12.5px] font-semibold font-sora text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200">
       <span>Learn more</span>
       <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
     </div>
@@ -172,7 +172,7 @@ const Service = () => {
         className="absolute inset-0 w-screen left-1/2 translate-x-[-50%] h-full z-0 overflow-hidden"
         aria-hidden="true"
         style={{
-          background: "linear-gradient(145deg, #c8dce9 0%, #b8ccd9 40%, #c0d3e2 100%)",
+          background: "linear-gradient(145deg, var(--c-pale-1) 0%, var(--c-pale-2) 40%, var(--c-pale-3) 100%)",
         }}
       >
         <BgDecor />

@@ -213,6 +213,13 @@ const ECGLine = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Canvas can't read CSS variables, so pull the active theme's RGB triplets once.
+    const rootStyle = getComputedStyle(document.documentElement);
+    const readRgb = (name: string, fallback: string) =>
+      rootStyle.getPropertyValue(name).trim().replace(/\s+/g, ",") || fallback;
+    const brandRgb = readRgb("--c-brand-rgb", "21,69,101");
+    const accentRgb = readRgb("--c-accent-rgb", "121,49,70");
+
     // Static baseline never changes except on resize — cached here so each
     // frame just blits it back instead of recomputing sin() per pixel.
     const baselineCanvas = document.createElement("canvas");
@@ -244,7 +251,7 @@ const ECGLine = () => {
         const y = baseline - ecgY(x / period) * amp;
         x === 0 ? baselineCtx.moveTo(x, y) : baselineCtx.lineTo(x, y);
       }
-      baselineCtx.strokeStyle = "rgba(21,69,101,0.11)"; baselineCtx.lineWidth = 1.0; baselineCtx.stroke();
+      baselineCtx.strokeStyle = `rgba(${brandRgb},0.11)`; baselineCtx.lineWidth = 1.0; baselineCtx.stroke();
     };
 
     const setSize = (width: number, height: number) => {
@@ -278,9 +285,9 @@ const ECGLine = () => {
       const trailLen = 115, tx0 = Math.max(0, dotX - trailLen);
       if (dotX > 0 && tx0 < W) {
         const grad = ctx.createLinearGradient(tx0, 0, Math.min(dotX, W), 0);
-        grad.addColorStop(0, "rgba(21,69,101,0)");
-        grad.addColorStop(0.6, "rgba(21,69,101,0.30)");
-        grad.addColorStop(1, "rgba(21,69,101,0.78)");
+        grad.addColorStop(0, `rgba(${brandRgb},0)`);
+        grad.addColorStop(0.6, `rgba(${brandRgb},0.30)`);
+        grad.addColorStop(1, `rgba(${brandRgb},0.78)`);
         ctx.save();
         ctx.beginPath(); ctx.rect(tx0, 0, Math.min(dotX, W) - tx0, H); ctx.clip();
         ctx.beginPath();
@@ -297,7 +304,7 @@ const ECGLine = () => {
         const phase = (dotX / period) % 1;
         const isR = phase > 0.36 && phase < 0.42;
         const glowR = isR ? 15 : 9, dotR = isR ? 4 : 2.8;
-        const dotColor = isR ? "rgba(121,49,70," : "rgba(21,69,101,";
+        const dotColor = isR ? `rgba(${accentRgb},` : `rgba(${brandRgb},`;
         const glow = ctx.createRadialGradient(dotX, dy, 0, dotX, dy, glowR);
         glow.addColorStop(0, `${dotColor}0.52)`); glow.addColorStop(1, `${dotColor}0)`);
         ctx.beginPath(); ctx.arc(dotX, dy, glowR, 0, Math.PI * 2); ctx.fillStyle = glow; ctx.fill();
@@ -335,7 +342,7 @@ const Hero = () => {
     <section className="relative pt-8 pb-10">
 
       {/* Background */}
-      <div className="absolute inset-0 w-screen left-1/2 translate-x-[-50%] h-full z-0" style={{ background: "#f4f8fb" }} />
+      <div className="absolute inset-0 w-screen left-1/2 translate-x-[-50%] h-full z-0" style={{ background: "var(--c-surface)" }} />
 
       {/* Diagonal DNA helix */}
       <DNAHelixBackground />
@@ -348,27 +355,27 @@ const Hero = () => {
           {/* Left: text */}
           <div className="flex-1 min-w-0 text-center lg:text-left">
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 CLIA Certified · NJ State Licensed
               </span>
             </div>
-            <h1 className="text-[2.35rem] sm:text-[2.9rem] lg:text-[3.1rem] font-inter font-bold leading-[1.12] text-[#0d2b45]">
+            <h1 className="text-[2.35rem] sm:text-[2.9rem] lg:text-[3.1rem] font-inter font-bold leading-[1.12] text-ink">
               Next-Level{" "}
-              <span className="text-[#154565]">Lab Care</span>
+              <span className="text-brand">Lab Care</span>
             </h1>
             <p className="mt-2 text-xl sm:text-2xl font-inter font-light text-[#2a6070]">
               For Today&apos;s Health
             </p>
-            <p className="mt-5 text-[15px] text-[#4a6070] leading-relaxed max-w-[430px] mx-auto lg:mx-0">
+            <p className="mt-5 text-[15px] text-body leading-relaxed max-w-[430px] mx-auto lg:mx-0">
               State of the art technology that meets certified expertise for
               unwavering diagnostic reliability at Paramount.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-5 justify-center lg:justify-start">
               {TRUST.map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5">
-                  <Icon className="w-3.5 h-3.5 text-[#154565]" />
-                  <span className="text-xs font-medium text-[#4a6070]">{text}</span>
+                  <Icon className="w-3.5 h-3.5 text-brand" />
+                  <span className="text-xs font-medium text-body">{text}</span>
                 </div>
               ))}
             </div>
@@ -382,7 +389,7 @@ const Hero = () => {
               style={{
                 width: 360,
                 height: 360,
-                background: "linear-gradient(160deg, rgb(129,52,74) 0%, rgb(21,69,101) 100%)",
+                background: "linear-gradient(160deg, var(--c-sci) 0%, var(--c-brand) 100%)",
               }}
             />
             {/* Doctor image — full height, sits in front of circle */}
@@ -409,16 +416,16 @@ const Hero = () => {
             <div
               key={index}
               onClick={() => router.push(service.path)}
-              className="group relative rounded-xl flex flex-col justify-between p-5 bg-white/90 backdrop-blur-sm border border-gray-100 hover:border-[#154565]/20 hover:shadow-md cursor-pointer transition-all duration-200 overflow-hidden"
+              className="group relative rounded-xl flex flex-col justify-between p-5 bg-white/90 backdrop-blur-sm border border-gray-100 hover:border-brand/20 hover:shadow-md cursor-pointer transition-all duration-200 overflow-hidden"
             >
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#154565] to-[#793146] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-soft to-soft-end origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               <div>
-                <h2 className="font-semibold font-poppins text-[14.5px] text-[#154565] mb-1.5">{service.title}</h2>
+                <h2 className="font-semibold font-poppins text-[14.5px] text-brand mb-1.5">{service.title}</h2>
                 <p className="font-light font-poppins text-[12.5px] text-[#64748b] mb-4 leading-snug">{service.description}</p>
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); router.push(service.path); }}
-                className="inline-flex items-center gap-1.5 text-[12px] font-semibold font-sora text-[#154565] group-hover:text-[#793146] transition-colors duration-200"
+                className="inline-flex items-center gap-1.5 text-[12px] font-semibold font-sora text-brand group-hover:text-accent transition-colors duration-200"
               >
                 <ArrowUpRightIcon className="w-3 h-3" />
                 {service.button}

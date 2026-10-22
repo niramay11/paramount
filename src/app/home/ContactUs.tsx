@@ -18,10 +18,10 @@ const SUBJECTS = [
 
 const inputCls =
   "w-full px-4 py-3 rounded-lg border border-gray-200 text-[14px] text-[#374151] bg-white " +
-  "focus:outline-none focus:border-[#154565] focus:ring-2 focus:ring-[#154565]/10 " +
+  "focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 " +
   "transition-colors font-sora placeholder:text-gray-400";
 
-const labelCls = "block mb-1.5 text-[12px] font-semibold font-sora text-[#4a6070] uppercase tracking-wide";
+const labelCls = "block mb-1.5 text-[12px] font-semibold font-sora text-body uppercase tracking-wide";
 
 /* ─── component ─────────────────────────────────────────── */
 
@@ -81,10 +81,10 @@ const ContactUs = () => {
         {/* ── Section heading ── */}
         <div className="flex flex-col items-center gap-3 text-center mb-10">
           <div className="gradient-divider" />
-          <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-[#0d2b45]">
+          <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-ink">
             Contact Us
           </h2>
-          <p className="font-poppins text-[15px] text-[#4a6070] max-w-xl leading-relaxed">
+          <p className="font-poppins text-[15px] text-body max-w-xl leading-relaxed">
             Have a question or ready to book your test? We&apos;re here to help.
           </p>
         </div>
@@ -95,7 +95,7 @@ const ContactUs = () => {
           {/* ── Left: info panel ── */}
           <div
             className="lg:w-[36%] relative flex flex-col overflow-hidden"
-            style={{ background: "linear-gradient(155deg, #0d2b45 0%, #154565 100%)" }}
+            style={{ background: "linear-gradient(155deg, var(--c-ink) 0%, var(--c-brand) 100%)" }}
           >
             {/* Dot texture */}
             <div
@@ -219,8 +219,8 @@ const ContactUs = () => {
                       onClick={() => setFormData(p => ({ ...p, subject: s.value }))}
                       className={`px-4 py-2 rounded-lg text-[12.5px] font-semibold font-sora border transition-all duration-200 ${
                         formData.subject === s.value
-                          ? "bg-[#154565] text-white border-[#154565]"
-                          : "bg-white text-[#4a6070] border-gray-200 hover:border-[#154565]/40 hover:text-[#154565]"
+                          ? "bg-brand text-white border-brand"
+                          : "bg-white text-body border-gray-200 hover:border-brand/40 hover:text-brand"
                       }`}
                     >
                       {s.label}
@@ -248,7 +248,7 @@ const ContactUs = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex items-center gap-2 px-8 py-3 rounded-lg bg-[#154565] text-white text-sm font-semibold font-sora hover:bg-[#0d2b45] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-8 py-3 rounded-lg bg-brand text-white text-sm font-semibold font-sora hover:bg-ink transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Submitting…" : "Send Message"}
                   {!isSubmitting && <ArrowUpRightIcon className="w-4 h-4" />}

@@ -29,7 +29,7 @@ const OurWorkFlow = () => {
     <section className="relative py-16">
       {/* Title and Description */}
       <div className="text-center max-w-3xl mx-auto z-10 relative">
-        <h3 className="font-poppins text-[#793146] font-semibold text-2xl sm:text-3xl md:text-4xl">
+        <h3 className="font-poppins text-accent font-semibold text-2xl sm:text-3xl md:text-4xl">
           Our Work Flow
         </h3>
         <p className="text-black mt-4 text-sm sm:text-base leading-relaxed font-poppins">

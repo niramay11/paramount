@@ -47,29 +47,29 @@ export default async function InsurancePage() {
       <section className="relative pt-12 pb-0">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f4f8fb" }}
+          style={{ background: "var(--c-surface)" }}
         />
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto px-4 sm:px-6">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2.5 mb-5">
-            <span className="block h-px w-8 bg-[#793146]" />
-            <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+            <span className="block h-px w-8 bg-accent" />
+            <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
               CLIA Certified · NJ State Licensed
             </span>
-            <span className="block h-px w-8 bg-[#793146]" />
+            <span className="block h-px w-8 bg-accent" />
           </div>
 
-          <h1 className="text-[2.2rem] sm:text-[2.7rem] lg:text-[3.1rem] font-inter font-bold leading-[1.12] text-[#0d2b45]">
+          <h1 className="text-[2.2rem] sm:text-[2.7rem] lg:text-[3.1rem] font-inter font-bold leading-[1.12] text-ink">
             Your Trusted Partner{" "}
-            <span className="text-[#154565]">in Diagnostic Care</span>
+            <span className="text-brand">in Diagnostic Care</span>
           </h1>
 
           <p className="mt-4 text-xl font-inter font-light text-[#2a6070]">
             Maximize Your Healthcare Benefits with Paramount Diagnostic Lab
           </p>
 
-          <p className="mt-5 text-[15px] text-[#4a6070] leading-relaxed max-w-2xl">
+          <p className="mt-5 text-[15px] text-body leading-relaxed max-w-2xl">
             At Paramount Diagnostic Lab, we believe that world-class diagnostic
             testing should be accessible and affordable. We are committed to
             convenience and cost-effectiveness while providing the reliable,
@@ -88,7 +88,7 @@ export default async function InsurancePage() {
       <section className="pt-32 pb-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "linear-gradient(145deg, #c8dce9 0%, #b8ccd9 40%, #c0d3e2 100%)" }}
+          style={{ background: "linear-gradient(145deg, var(--c-pale-1) 0%, var(--c-pale-2) 40%, var(--c-pale-3) 100%)" }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
@@ -103,15 +103,15 @@ export default async function InsurancePage() {
           <div className="mb-14">
             <div className="mb-6">
               <div className="inline-flex items-center gap-2.5 mb-2">
-                <span className="block h-px w-6 bg-[#793146]" />
-                <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-sora">
+                <span className="block h-px w-6 bg-accent" />
+                <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-sora">
                   National &amp; Regional
                 </span>
               </div>
-              <h3 className="font-poppins text-[20px] sm:text-[24px] font-bold text-[#0d2b45]">
+              <h3 className="font-poppins text-[20px] sm:text-[24px] font-bold text-ink">
                 Featured National and Regional Partners
               </h3>
-              <p className="font-poppins text-[14px] text-[#4a6070] mt-2">
+              <p className="font-poppins text-[14px] text-body mt-2">
                 We are proud to be in-network with many of the nation&apos;s leading
                 health plans
               </p>
@@ -132,9 +132,9 @@ export default async function InsurancePage() {
                         className="w-8 h-8 object-contain flex-shrink-0"
                       />
                     ) : (
-                      <div className="w-2 h-2 bg-[#1F4362] rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-brand-dark rounded-full flex-shrink-0" />
                     )}
-                    <span className="font-poppins text-sm text-[#0d2b45] font-medium">
+                    <span className="font-poppins text-sm text-ink font-medium">
                       {provider.name}
                     </span>
                   </div>
@@ -147,15 +147,15 @@ export default async function InsurancePage() {
           <div>
             <div className="mb-6">
               <div className="inline-flex items-center gap-2.5 mb-2">
-                <span className="block h-px w-6 bg-[#793146]" />
-                <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-sora">
+                <span className="block h-px w-6 bg-accent" />
+                <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-sora">
                   Specialty Networks
                 </span>
               </div>
-              <h3 className="font-poppins text-[20px] sm:text-[24px] font-bold text-[#0d2b45]">
+              <h3 className="font-poppins text-[20px] sm:text-[24px] font-bold text-ink">
                 Specialty &amp; Network Plans
               </h3>
-              <p className="font-poppins text-[14px] text-[#4a6070] mt-2">
+              <p className="font-poppins text-[14px] text-body mt-2">
                 We also work with the following specialized and local networks
               </p>
             </div>
@@ -177,7 +177,7 @@ export default async function InsurancePage() {
                     ) : (
                       <div className="w-2 h-2 bg-[#2C6B9E] rounded-full flex-shrink-0" />
                     )}
-                    <span className="font-poppins text-sm text-[#0d2b45] font-medium leading-relaxed">
+                    <span className="font-poppins text-sm text-ink font-medium leading-relaxed">
                       {provider.name}
                     </span>
                   </div>
@@ -193,7 +193,7 @@ export default async function InsurancePage() {
       <section className="py-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f4f8fb" }}
+          style={{ background: "var(--c-surface)" }}
         />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8">
@@ -228,19 +228,19 @@ export default async function InsurancePage() {
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
               >
                 {/* Gradient top bar on hover */}
-                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-[#154565] to-[#793146] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-soft to-soft-end opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center mb-5 flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                  style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                 >
                   <span className="font-poppins text-lg font-bold text-white">{step.n}</span>
                 </div>
 
-                <h4 className="font-poppins text-[17px] font-bold text-[#0d2b45] mb-3">
+                <h4 className="font-poppins text-[17px] font-bold text-ink mb-3">
                   {step.title}
                 </h4>
-                <p className="font-poppins text-[13.5px] font-light text-[#4a6070] leading-relaxed">
+                <p className="font-poppins text-[13.5px] font-light text-body leading-relaxed">
                   {step.body}
                 </p>
               </div>
@@ -254,7 +254,7 @@ export default async function InsurancePage() {
       <section className="py-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "linear-gradient(141.26deg, #154565 0%, #793146 100%)" }}
+          style={{ background: "linear-gradient(141.26deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 text-center">

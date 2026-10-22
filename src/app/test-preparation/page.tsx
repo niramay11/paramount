@@ -114,7 +114,7 @@ export default function TestPreparationPage() {
       <section className="relative pt-10 pb-0">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f4f8fb" }}
+          style={{ background: "var(--c-surface)" }}
         />
 
         <div className="relative z-10 flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-16 min-h-[340px]">
@@ -122,18 +122,18 @@ export default function TestPreparationPage() {
           {/* Left: text */}
           <div className="flex-1 min-w-0 text-center lg:text-left">
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 Patient Education · NJ State Licensed
               </span>
             </div>
 
-            <h1 className="text-[2rem] sm:text-[2.5rem] lg:text-[2.9rem] font-inter font-bold leading-[1.12] text-[#0d2b45]">
+            <h1 className="text-[2rem] sm:text-[2.5rem] lg:text-[2.9rem] font-inter font-bold leading-[1.12] text-ink">
               Preparing for Your{" "}
-              <span className="text-[#154565]">Test at Paramount</span>
+              <span className="text-brand">Test at Paramount</span>
             </h1>
 
-            <p className="mt-5 text-[15px] text-[#4a6070] leading-relaxed max-w-[520px] mx-auto lg:mx-0">
+            <p className="mt-5 text-[15px] text-body leading-relaxed max-w-[520px] mx-auto lg:mx-0">
               At Paramount Diagnostic Lab, we understand that accurate results
               are the foundation of your healthcare journey, and proper
               preparation is essential for reliable diagnostic services. As a
@@ -141,7 +141,7 @@ export default function TestPreparationPage() {
               patient-centered care and aim for excellence in every test we
               perform.
             </p>
-            <p className="mt-4 text-[15px] text-[#4a6070] leading-relaxed max-w-[520px] mx-auto lg:mx-0">
+            <p className="mt-4 text-[15px] text-body leading-relaxed max-w-[520px] mx-auto lg:mx-0">
               By following these clear, simple instructions, you contribute
               directly to the high quality of service and precision of your
               results — optimizing your patient journey from appointment booking
@@ -167,7 +167,7 @@ export default function TestPreparationPage() {
       <section className="py-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "linear-gradient(145deg, #c8dce9 0%, #b8ccd9 40%, #c0d3e2 100%)" }}
+          style={{ background: "linear-gradient(145deg, var(--c-pale-1) 0%, var(--c-pale-2) 40%, var(--c-pale-3) 100%)" }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
@@ -184,17 +184,17 @@ export default function TestPreparationPage() {
                 className={`group relative flex flex-col gap-3 rounded-2xl bg-white p-7${i === 4 ? " sm:col-span-2 lg:col-span-1" : ""}`}
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
               >
-                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-[#154565] to-[#793146] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-soft to-soft-end opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                  style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                 >
                   <span className="font-inter font-bold text-white text-sm">{i + 1}</span>
                 </div>
-                <h4 className="font-poppins text-[15px] font-bold text-[#0d2b45]">
+                <h4 className="font-poppins text-[15px] font-bold text-ink">
                   {item.title}
                 </h4>
-                <p className="font-poppins text-[13px] font-light text-[#4a6070] leading-relaxed">
+                <p className="font-poppins text-[13px] font-light text-body leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -207,7 +207,7 @@ export default function TestPreparationPage() {
       <section className="py-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f4f8fb" }}
+          style={{ background: "var(--c-surface)" }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
@@ -226,22 +226,22 @@ export default function TestPreparationPage() {
                   className="group relative flex flex-col rounded-2xl bg-white p-8"
                   style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
                 >
-                  <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-[#154565] to-[#793146] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r from-soft to-soft-end opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Header */}
                   <div className="flex items-center gap-4 mb-4">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                      style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                     >
                       <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="font-poppins text-[18px] font-bold text-[#0d2b45] leading-snug">
+                    <h3 className="font-poppins text-[18px] font-bold text-ink leading-snug">
                       {card.title}
                     </h3>
                   </div>
 
-                  <p className="font-poppins text-[13.5px] font-light text-[#4a6070] leading-relaxed mb-5">
+                  <p className="font-poppins text-[13.5px] font-light text-body leading-relaxed mb-5">
                     {card.description}
                   </p>
 
@@ -250,9 +250,9 @@ export default function TestPreparationPage() {
                       <li key={i} className="flex items-start gap-3">
                         <div
                           className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2"
-                          style={{ background: "#154565" }}
+                          style={{ background: "var(--c-brand)" }}
                         />
-                        <p className="font-poppins text-[13px] text-[#4a6070] font-light leading-relaxed">
+                        <p className="font-poppins text-[13px] text-body font-light leading-relaxed">
                           {item}
                         </p>
                       </li>
@@ -269,7 +269,7 @@ export default function TestPreparationPage() {
       <section className="py-20 relative">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "linear-gradient(141.26deg, #154565 0%, #793146 100%)" }}
+          style={{ background: "linear-gradient(141.26deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
         />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8">

@@ -39,10 +39,10 @@ export default function MapEmbed() {
         /* Placeholder shown until iframe is needed */
         <div
           className="w-full h-full flex flex-col items-center justify-center gap-3 bg-[#edf3f9]"
-          style={{ border: "1px solid rgba(21,69,101,0.10)" }}
+          style={{ border: "1px solid rgb(var(--c-brand-rgb) / 0.10)" }}
         >
-          <MapPinIcon className="w-8 h-8 text-[#154565]" />
-          <p className="font-poppins text-[13px] text-[#4a6070]">Loading map…</p>
+          <MapPinIcon className="w-8 h-8 text-brand" />
+          <p className="font-poppins text-[13px] text-body">Loading map…</p>
         </div>
       )}
     </div>

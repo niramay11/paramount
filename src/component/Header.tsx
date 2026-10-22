@@ -109,10 +109,10 @@ const hamburgerV = {
    HELPERS
 ═══════════════════════════════════════════════════════════ */
 
-const BRAND_GRADIENT = "linear-gradient(135deg, #154565 0%, #793146 100%)";
+const BRAND_GRADIENT = "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)";
 
 const focusRing =
-  "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30 rounded";
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 rounded";
 
 /* nav link — pill/capsule style */
 function navLinkCls(active: boolean) {
@@ -120,10 +120,10 @@ function navLinkCls(active: boolean) {
     "relative group flex items-center gap-1 py-1.5 px-3",
     "font-poppins font-medium text-[13.5px] tracking-[0.01em] cursor-pointer",
     "rounded-lg transition-all duration-200",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/30",
     active
-      ? "bg-[#154565]/[0.09] text-[#154565]"
-      : "text-[#4a6070] hover:bg-[#154565]/[0.07] hover:text-[#154565]",
+      ? "bg-brand/[0.09] text-brand"
+      : "text-body hover:bg-brand/[0.07] hover:text-brand",
   ].join(" ");
 }
 
@@ -143,19 +143,19 @@ const DropdownItem: FC<DropdownItemProps> = ({ item, onSelect, itemRef, onKeyDow
     ref={itemRef}
     onClick={onSelect}
     onKeyDown={onKeyDown}
-    className="flex items-start gap-3 w-full text-left px-4 py-2.5 hover:bg-[#154565]/[0.045] transition-colors duration-150 group/item focus:outline-none focus-visible:bg-[#154565]/[0.06] focus-visible:outline-none rounded-lg mx-1"
+    className="flex items-start gap-3 w-full text-left px-4 py-2.5 hover:bg-brand/[0.045] transition-colors duration-150 group/item focus:outline-none focus-visible:bg-brand/[0.06] focus-visible:outline-none rounded-lg mx-1"
     style={{ width: "calc(100% - 8px)" }}
     role="menuitem"
   >
     <div
       className="mt-0.5 w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-150"
-      style={{ background: "rgba(21,69,101,0.07)" }}
+      style={{ background: "rgb(var(--c-brand-rgb) / 0.07)" }}
       aria-hidden="true"
     >
-      <item.icon className="w-3.5 h-3.5 text-[#154565]" />
+      <item.icon className="w-3.5 h-3.5 text-brand" />
     </div>
     <div className="min-w-0">
-      <p className="text-[13px] font-semibold text-[#0d2b45] group-hover/item:text-[#154565] transition-colors leading-tight font-poppins">
+      <p className="text-[13px] font-semibold text-ink group-hover/item:text-brand transition-colors leading-tight font-poppins">
         {item.label}
       </p>
       <p className="text-[11px] text-[#94a3b8] mt-0.5 leading-snug font-poppins font-light">
@@ -243,7 +243,7 @@ const DesktopNavItem: FC<DesktopNavItemProps> = ({
             exit="exit"
             className="absolute top-full left-0 mt-3 bg-white rounded-2xl py-2 z-50 min-w-[256px] origin-top-left"
             style={{
-              boxShadow: "0 8px 40px rgba(21,69,101,0.12), 0 0 0 1px rgba(21,69,101,0.06)",
+              boxShadow: "0 8px 40px rgb(var(--c-brand-rgb) / 0.12), 0 0 0 1px rgb(var(--c-brand-rgb) / 0.06)",
             }}
             role="menu"
             aria-label={config.sectionLabel ?? config.label}
@@ -281,7 +281,7 @@ interface MobileNavItemProps {
 }
 
 const MobileNavItem: FC<MobileNavItemProps> = ({ config, isOpen, onToggle, onNavigate }) => {
-  const base = "font-poppins font-semibold text-[14px] text-[#0d2b45]";
+  const base = "font-poppins font-semibold text-[14px] text-ink";
 
   if (!config.submenu) {
     return (
@@ -304,7 +304,7 @@ const MobileNavItem: FC<MobileNavItemProps> = ({ config, isOpen, onToggle, onNav
         <ChevronDown
           size={15}
           aria-hidden="true"
-          className={`text-[#793146] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`text-accent transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -323,9 +323,9 @@ const MobileNavItem: FC<MobileNavItemProps> = ({ config, isOpen, onToggle, onNav
                 <button
                   key={item.href}
                   onClick={() => onNavigate(item.href)}
-                  className={`flex items-center gap-2.5 py-2 px-3 rounded-xl text-[13px] font-poppins text-[#4a6070] hover:text-[#154565] hover:bg-[#154565]/[0.05] transition-colors text-left ${focusRing}`}
+                  className={`flex items-center gap-2.5 py-2 px-3 rounded-xl text-[13px] font-poppins text-body hover:text-brand hover:bg-brand/[0.05] transition-colors text-left ${focusRing}`}
                 >
-                  <item.icon className="w-3.5 h-3.5 text-[#154565]/50 flex-shrink-0" aria-hidden="true" />
+                  <item.icon className="w-3.5 h-3.5 text-brand/50 flex-shrink-0" aria-hidden="true" />
                   {item.label}
                 </button>
               ))}
@@ -433,7 +433,7 @@ const Header: FC = () => {
           >
             <div
               className="relative flex items-center justify-center gap-2 px-10 py-2 text-white"
-              style={{ background: "linear-gradient(90deg, #0d2b45 0%, #793146 50%, #0d2b45 100%)" }}
+              style={{ background: "linear-gradient(90deg, var(--c-hero-1) 0%, var(--c-hero-3) 50%, var(--c-hero-1) 100%)" }}
             >
               <span className="font-poppins text-[11.5px] font-light opacity-90 tracking-wide">
                 Accepting new patients &mdash; CLIA-certified, fast turnaround results.
@@ -460,7 +460,7 @@ const Header: FC = () => {
       {/* ── 2 px gradient stripe ────────────────────────────── */}
       <div
         className="h-[2px] w-full"
-        style={{ background: "linear-gradient(90deg, #154565 0%, #793146 50%, #154565 100%)" }}
+        style={{ background: "linear-gradient(90deg, var(--c-brand) 0%, var(--c-brand-end) 50%, var(--c-brand) 100%)" }}
         aria-hidden="true"
       />
 
@@ -471,7 +471,7 @@ const Header: FC = () => {
           background:    scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.92)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          boxShadow:     scrolled ? "0 1px 32px rgba(21,69,101,0.1)" : "none",
+          boxShadow:     scrolled ? "0 1px 32px rgb(var(--c-brand-rgb) / 0.1)" : "none",
         }}
         role="banner"
       >
@@ -482,9 +482,14 @@ const Header: FC = () => {
             <Link
               href="/"
               aria-label="Paramount Diagnostic Lab — home"
-              className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/40 rounded"
+              className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 rounded"
             >
-              <Image src={Logo} width={88} height={88} alt="Paramount Diagnostic Lab" priority />
+              <Image src={Logo} width={88} height={88} alt="Paramount Diagnostic Lab" priority className="theme-logo-default" />
+              {/* Palette preview logos — only one shows, driven by data-theme in globals.css */}
+              {["2", "5", "8"].map((t) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={t} src={`/theme-preview/logo-${t}.svg`} width={88} height={88} alt="Paramount Diagnostic Lab" loading="lazy" className={`theme-logo-alt theme-logo-${t}`} />
+              ))}
             </Link>
 
             {/* Desktop nav */}
@@ -509,7 +514,7 @@ const Header: FC = () => {
               {/* Phone */}
               <a
                 href="tel:+19088348034"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[#154565] text-[12.5px] font-poppins font-semibold hover:bg-[#154565]/[0.06] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#154565]/30"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-brand text-[12.5px] font-poppins font-semibold hover:bg-brand/[0.06] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
                 aria-label="Call Paramount at (908) 834-8034"
               >
                 <PhoneIcon className="w-3.5 h-3.5" aria-hidden="true" />
@@ -536,7 +541,7 @@ const Header: FC = () => {
 
             {/* Mobile hamburger */}
             <button
-              className={`md:hidden p-1 text-[#154565] ${focusRing}`}
+              className={`md:hidden p-1 text-brand ${focusRing}`}
               onClick={() => setMenuOpen(p => !p)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
@@ -591,7 +596,7 @@ const Header: FC = () => {
                 <div className="flex flex-col gap-2.5 mt-4 pt-4 border-t border-gray-100">
                   <a
                     href="tel:+19088348034"
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#154565]/20 text-[#154565] text-sm font-poppins font-semibold hover:bg-[#154565]/[0.05] transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-brand/20 text-brand text-sm font-poppins font-semibold hover:bg-brand/[0.05] transition-colors"
                   >
                     <PhoneIcon className="w-4 h-4" aria-hidden="true" />
                     (908) 834-8034

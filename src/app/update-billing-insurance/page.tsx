@@ -27,16 +27,16 @@ const EMPTY: FormState = {
 };
 
 const fieldClass =
-  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-[#0d2b45] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#154565]/20 focus:border-[#154565] focus:bg-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed";
+  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-ink placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed";
 
 const labelClass =
-  "block font-poppins text-[11px] font-semibold tracking-wide text-[#4a6070] uppercase mb-1";
+  "block font-poppins text-[11px] font-semibold tracking-wide text-body uppercase mb-1";
 
 const segBtn = (active: boolean) =>
   `flex-1 py-1.5 rounded-full text-[12.5px] font-poppins font-semibold border transition-all duration-200 ${
     active
-      ? "bg-[#154565] text-white border-[#154565]"
-      : "bg-white text-[#4a6070] border-gray-300 hover:border-[#154565] hover:text-[#154565]"
+      ? "bg-brand text-white border-brand"
+      : "bg-white text-body border-gray-300 hover:border-brand hover:text-brand"
   }`;
 
 export default function BillingInsurance() {
@@ -89,7 +89,7 @@ export default function BillingInsurance() {
         {/* Page background */}
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f0f4f8" }}
+          style={{ background: "var(--c-surface-2)" }}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4">
@@ -128,7 +128,7 @@ export default function BillingInsurance() {
             <div
               className="flex flex-col justify-between p-7"
               style={{
-                background: "linear-gradient(160deg, #0d2b45 0%, #154565 55%, #793146 100%)",
+                background: "linear-gradient(160deg, var(--c-hero-1) 0%, var(--c-hero-2) 55%, var(--c-hero-3) 100%)",
               }}
             >
               <div>
@@ -199,7 +199,7 @@ export default function BillingInsurance() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="firstName" className={labelClass}>
-                    First Name <span className="text-[#793146]">*</span>
+                    First Name <span className="text-accent">*</span>
                   </label>
                   <input
                     id="firstName" name="firstName" value={form.firstName}
@@ -209,7 +209,7 @@ export default function BillingInsurance() {
                 </div>
                 <div>
                   <label htmlFor="lastName" className={labelClass}>
-                    Last Name <span className="text-[#793146]">*</span>
+                    Last Name <span className="text-accent">*</span>
                   </label>
                   <input
                     id="lastName" name="lastName" value={form.lastName}
@@ -223,7 +223,7 @@ export default function BillingInsurance() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="accountNumber" className={labelClass}>
-                    Account No. <span className="text-[#793146]">*</span>
+                    Account No. <span className="text-accent">*</span>
                   </label>
                   <input
                     id="accountNumber" name="accountNumber" value={form.accountNumber}
@@ -233,7 +233,7 @@ export default function BillingInsurance() {
                 </div>
                 <div>
                   <label htmlFor="dob" className={labelClass}>
-                    Date of Birth <span className="text-[#793146]">*</span>
+                    Date of Birth <span className="text-accent">*</span>
                   </label>
                   <input
                     id="dob" name="dob" type="date" value={form.dob}
@@ -275,7 +275,7 @@ export default function BillingInsurance() {
                 type="submit"
                 disabled={isSubmitting}
                 className="mt-1 w-full py-2.5 rounded-full text-[13.5px] font-poppins font-semibold text-white flex items-center justify-center gap-2 hover:opacity-90 transition-opacity duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
-                style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
               >
                 {isSubmitting ? "Submitting…" : (
                   <>Submit Request <ArrowRight className="w-4 h-4" /></>

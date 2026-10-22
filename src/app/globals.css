@@ -7,11 +7,232 @@
   --font-sora: "Sora", sans-serif;
   --font-inter: "Inter", sans-serif;
   --font-open-sans: "Open Sans", sans-serif;
+
+  /* ── Brand palette (default = current production colors) ──
+     Components use these via Tailwind tokens (text-brand, bg-accent…)
+     or var(--c-*). Preview palettes below override them. */
+  --c-brand: #154565;
+  --c-brand-rgb: 21 69 101;
+  --c-brand-end: #793146;
+  --c-brand-dark: #1f4362;
+  --c-sci: #81344a;
+  --c-accent: #793146;
+  --c-accent-rgb: 121 49 70;
+  --c-accent-light: #c97a97;
+  --c-accent-soft: #f7edf0;
+  --c-ink: #0d2b45;
+  --c-ink-rgb: 13 43 69;
+  --c-body: #4a6070;
+  --c-soft: #154565;
+  --c-soft-end: #793146;
+  --c-hero-1: #0d2b45;
+  --c-hero-1-rgb: 13 43 69;
+  --c-hero-2: #154565;
+  --c-hero-2-rgb: 21 69 101;
+  --c-hero-3: #793146;
+  --c-hero-3-rgb: 121 49 70;
+  --c-footer-light: #6a96b0;
+  --c-footer-dark: #154565;
+  --c-surface: #f4f8fb;
+  --c-surface-2: #f0f4f8;
+  --c-surface-3: #e8eef5;
+  --c-tint-100: #e4ecf4;
+  --c-pale-1: #c8dce9;
+  --c-pale-2: #b8ccd9;
+  --c-pale-3: #c0d3e2;
+  --c-pastel-a: #a8d0f0;
+  --c-pastel-b: #e8a0bc;
+  --c-book-shadow: rgba(65, 132, 247, 0.24);
+  --g-bg-blue: linear-gradient(
+    0deg,
+    rgb(44, 92, 132),
+    rgb(114, 158, 182) 27.717%,
+    rgba(107, 153, 178, 0.4) 67.691%,
+    rgba(94, 144, 171, 0.2) 125.31%
+  );
 }
+
+/* ── Preview palettes: activated by ?theme=2|5|8|mix (see ThemeScript) ── */
+
+/* Option 2 — #0D6B72 → #22A06B (also the base for "mix") */
+[data-theme="2"],
+[data-theme="mix"] {
+  --c-brand: #0d6b72;
+  --c-brand-rgb: 13 107 114;
+  --c-brand-end: #22a06b;
+  --c-brand-dark: #0a565b;
+  --c-sci: #22a06b;
+  --c-accent: #1b7e55;
+  --c-accent-rgb: 27 126 85;
+  --c-accent-light: #6fc19f;
+  --c-accent-soft: #edf7f3;
+  --c-ink: #063033;
+  --c-ink-rgb: 6 48 51;
+  --c-body: #46636d;
+  --c-soft: #0d6b72;
+  --c-soft-end: #22a06b;
+  --c-hero-1: #063033;
+  --c-hero-1-rgb: 6 48 51;
+  --c-hero-2: #0d6b72;
+  --c-hero-2-rgb: 13 107 114;
+  --c-hero-3: #22a06b;
+  --c-hero-3-rgb: 34 160 107;
+  --c-footer-light: #629fa3;
+  --c-footer-dark: #0d6b72;
+  --c-surface: #f4f8f9;
+  --c-surface-2: #f0f6f7;
+  --c-surface-3: #e2edee;
+  --c-tint-100: #e2edee;
+  --c-pale-1: #cadee0;
+  --c-pale-2: #bbd6d8;
+  --c-pale-3: #c3dadc;
+  --c-pastel-a: #9fd8dc;
+  --c-pastel-b: #6fc19f;
+  --c-book-shadow: rgb(13 107 114 / 0.24);
+  --g-bg-blue: linear-gradient(
+    0deg,
+    #0c6067,
+    #629fa3 27.717%,
+    rgba(110, 166, 170, 0.4) 67.691%,
+    rgba(122, 174, 177, 0.2) 125.31%
+  );
+}
+
+/* Option 5 — #3A6EA5 → #1B9E77 */
+[data-theme="5"] {
+  --c-brand: #3a6ea5;
+  --c-brand-rgb: 58 110 165;
+  --c-brand-end: #1b9e77;
+  --c-brand-dark: #2e5884;
+  --c-sci: #1b9e77;
+  --c-accent: #167e5f;
+  --c-accent-rgb: 22 126 95;
+  --c-accent-light: #6bc0a7;
+  --c-accent-soft: #edf7f4;
+  --c-ink: #1a314a;
+  --c-ink-rgb: 26 49 74;
+  --c-body: #51637a;
+  --c-soft: #3a6ea5;
+  --c-soft-end: #1b9e77;
+  --c-hero-1: #1a314a;
+  --c-hero-1-rgb: 26 49 74;
+  --c-hero-2: #3a6ea5;
+  --c-hero-2-rgb: 58 110 165;
+  --c-hero-3: #1b9e77;
+  --c-hero-3-rgb: 27 158 119;
+  --c-footer-light: #7fa1c5;
+  --c-footer-dark: #3a6ea5;
+  --c-surface: #f6f8fb;
+  --c-surface-2: #f3f6fa;
+  --c-surface-3: #e7eef4;
+  --c-tint-100: #e7eef4;
+  --c-pale-1: #d4dfeb;
+  --c-pale-2: #c8d6e6;
+  --c-pale-3: #cedbe9;
+  --c-pastel-a: #a8c8ec;
+  --c-pastel-b: #6bc0a7;
+  --c-book-shadow: rgb(58 110 165 / 0.24);
+  --g-bg-blue: linear-gradient(
+    0deg,
+    #346395,
+    #7fa1c5 27.717%,
+    rgba(137, 168, 201, 0.4) 67.691%,
+    rgba(147, 175, 206, 0.2) 125.31%
+  );
+}
+
+/* Option 8 — #2C7A7B → #3CC58E */
+[data-theme="8"] {
+  --c-brand: #2c7a7b;
+  --c-brand-rgb: 44 122 123;
+  --c-brand-end: #3cc58e;
+  --c-brand-dark: #236262;
+  --c-sci: #3cc58e;
+  --c-accent: #267c59;
+  --c-accent-rgb: 38 124 89;
+  --c-accent-light: #80d9b6;
+  --c-accent-soft: #effaf6;
+  --c-ink: #143737;
+  --c-ink-rgb: 20 55 55;
+  --c-body: #4d6670;
+  --c-soft: #2c7a7b;
+  --c-soft-end: #3cc58e;
+  --c-hero-1: #143737;
+  --c-hero-1-rgb: 20 55 55;
+  --c-hero-2: #2c7a7b;
+  --c-hero-2-rgb: 44 122 123;
+  --c-hero-3: #3cc58e;
+  --c-hero-3-rgb: 60 197 142;
+  --c-footer-light: #76a9a9;
+  --c-footer-dark: #2c7a7b;
+  --c-surface: #f6f9f9;
+  --c-surface-2: #f2f7f7;
+  --c-surface-3: #e6efef;
+  --c-tint-100: #e6efef;
+  --c-pale-1: #d1e2e2;
+  --c-pale-2: #c4dada;
+  --c-pale-3: #cadede;
+  --c-pastel-a: #a6dcdc;
+  --c-pastel-b: #80d9b6;
+  --c-book-shadow: rgb(44 122 123 / 0.24);
+  --g-bg-blue: linear-gradient(
+    0deg,
+    #286e6f,
+    #76a9a9 27.717%,
+    rgba(128, 175, 176, 0.4) 67.691%,
+    rgba(139, 182, 182, 0.2) 125.31%
+  );
+}
+
+/* Mix — Option 2 base (buttons, logo), Option 5 for hero/footer,
+   Option 8 for hovers, maroon kept for accent text and label lines */
+[data-theme="mix"] {
+  --c-accent: #793146;
+  --c-accent-rgb: 121 49 70;
+  --c-accent-light: #c97a97;
+  --c-accent-soft: #f7edf0;
+  --c-soft: #2c7a7b;
+  --c-soft-end: #3cc58e;
+  --c-hero-1: #1a314a;
+  --c-hero-1-rgb: 26 49 74;
+  --c-hero-2: #3a6ea5;
+  --c-hero-2-rgb: 58 110 165;
+  --c-hero-3: #1b9e77;
+  --c-hero-3-rgb: 27 158 119;
+  --c-footer-light: #7fa1c5;
+  --c-footer-dark: #3a6ea5;
+  --c-pastel-a: #a8c8ec;
+  --c-pastel-b: #c97a97;
+  --g-bg-blue: linear-gradient(
+    0deg,
+    #346395,
+    #7fa1c5 27.717%,
+    rgba(137, 168, 201, 0.4) 67.691%,
+    rgba(147, 175, 206, 0.2) 125.31%
+  );
+}
+
+/* Header logo swap for the preview palettes (mix uses the Option 2 logo) */
+.theme-logo-alt { display: none; }
+[data-theme] .theme-logo-default { display: none; }
+[data-theme="2"] .theme-logo-2,
+[data-theme="mix"] .theme-logo-2,
+[data-theme="5"] .theme-logo-5,
+[data-theme="8"] .theme-logo-8 { display: block; }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--c-brand);
+  --color-brand-end: var(--c-brand-end);
+  --color-brand-dark: var(--c-brand-dark);
+  --color-accent: var(--c-accent);
+  --color-accent-light: var(--c-accent-light);
+  --color-ink: var(--c-ink);
+  --color-body: var(--c-body);
+  --color-soft: var(--c-soft);
+  --color-soft-end: var(--c-soft-end);
+  --color-pastel: var(--c-pastel-a);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-poppins: "Poppins", sans-serif;
@@ -40,11 +261,11 @@ body {
   gap: 8;
   padding: 12.8px 22.4px 12.8px 22.4px;
   border-radius: 80px;
-  box-shadow: 0px 6.4px 18.4px 0px rgba(65, 132, 247, 0.24);
+  box-shadow: 0px 6.4px 18.4px 0px var(--c-book-shadow);
   background: linear-gradient(
     141.26deg,
-    rgb(21, 69, 101) -9.218%,
-    rgb(121, 49, 70) 195.768%
+    var(--c-brand) -9.218%,
+    var(--c-brand-end) 195.768%
   );
   color: rgb(255, 255, 255);
   font-family: Sora;
@@ -64,13 +285,7 @@ body {
   height: 100%;
   width: 100vw;
   z-index: -1;
-  background: linear-gradient(
-    0deg,
-    rgb(44, 92, 132),
-    rgb(114, 158, 182) 27.717%,
-    rgba(107, 153, 178, 0.4) 67.691%,
-    rgba(94, 144, 171, 0.2) 125.31%
-  );
+  background: var(--g-bg-blue);
 }
 
 .bg-tint {
@@ -87,15 +302,15 @@ body {
 
 .scientist_circle {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(180deg, rgb(129, 52, 74), rgb(21, 69, 101) 100%);
+  background: linear-gradient(180deg, var(--c-sci), var(--c-brand) 100%);
 }
 
 .button-bg{
-  background: linear-gradient(141.26deg, rgb(21, 69, 101) -9.723%,rgb(121, 49, 70) 196.07%);
+  background: linear-gradient(141.26deg, var(--c-brand) -9.723%, var(--c-brand-end) 196.07%);
 }
 
 .footer-bg {
-  background: linear-gradient(-0.72deg, rgb(106, 150, 176) -71.973%,rgb(21, 69, 101) 64.014%);
+  background: linear-gradient(-0.72deg, var(--c-footer-light) -71.973%, var(--c-footer-dark) 64.014%);
 }
 
 /* ── gradient divider — decorative section accent ── */
@@ -103,7 +318,7 @@ body {
   width: 48px;
   height: 3px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #154565 0%, #793146 100%);
+  background: linear-gradient(90deg, var(--c-brand) 0%, var(--c-brand-end) 100%);
 }
 
 /* ── floatY — badge float animation ── */

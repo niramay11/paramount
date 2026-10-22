@@ -33,20 +33,20 @@ export default function SectionHeader({
       <div className="gradient-divider" />
 
       {eyebrow && (
-        <p className="font-sora text-[11px] font-semibold uppercase tracking-[0.14em] text-[#793146]">
+        <p className="font-sora text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           {eyebrow}
         </p>
       )}
 
       <h2
         id={id}
-        className="font-poppins text-3xl sm:text-4xl font-bold text-[#0d2b45] tracking-tight leading-tight"
+        className="font-poppins text-3xl sm:text-4xl font-bold text-ink tracking-tight leading-tight"
       >
         {heading}
       </h2>
 
       {body && (
-        <p className="font-poppins text-[15px] text-[#4a6070] max-w-2xl leading-relaxed">
+        <p className="font-poppins text-[15px] text-body max-w-2xl leading-relaxed">
           {body}
         </p>
       )}

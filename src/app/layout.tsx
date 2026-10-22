@@ -5,6 +5,8 @@ import "./globals.css";
 import ConditionalHeader from "@/component/ConditionalHeader";
 import JsonLd from "@/component/JsonLd";
 import MotionProvider from "@/component/MotionProvider";
+import ThemePreviewBadge from "@/component/ThemePreview";
+import { THEME_SCRIPT } from "@/component/themePreviewScript";
 
 const GA_MEASUREMENT_ID = "G-JNRBVHE7MV";
 
@@ -116,7 +118,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body
         className={`
           ${poppins.variable}
@@ -131,6 +136,7 @@ export default function RootLayout({
           <ConditionalHeader />
           {children}
         </MotionProvider>
+        <ThemePreviewBadge />
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>

@@ -8,7 +8,7 @@ const OurMission = () => {
     <section className="py-16 flex flex-col-reverse lg:flex-row items-center gap-24 lg:gap-28">
       {/* Left Content */}
       <div className="w-full lg:w-1/2">
-        <h2 className="font-poppins text-[#793146] font-semibold text-3xl sm:text-4xl mb-4">
+        <h2 className="font-poppins text-accent font-semibold text-3xl sm:text-4xl mb-4">
           Our Mission: Precision, Care, and Community
         </h2>
         <p className="font-poppins text-black text-sm sm:text-base leading-7">
@@ -31,7 +31,7 @@ const OurMission = () => {
           priority
         />
 
-        <span className="scientist_circle absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-[-50%] top-[100%] translate-y-[-50%] bg-[#154565] p-6 w-[250px] rounded-2xl text-white shadow-lg">
+        <span className="scientist_circle absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-[-50%] top-[100%] translate-y-[-50%] bg-brand p-6 w-[250px] rounded-2xl text-white shadow-lg">
           <p className="font-poppins font-semibold text-3xl">60%</p>
           <span className="flex items-center gap-2 mt-2">
             <p className="font-poppins text-sm font-light">

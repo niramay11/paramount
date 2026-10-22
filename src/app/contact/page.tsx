@@ -63,19 +63,19 @@ export default function ContactPage() {
           {/* Eyebrow + heading */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 Contact Us
               </span>
             </div>
             <h1
-              className="font-inter font-bold leading-[1.05] text-[#0d2b45]"
+              className="font-inter font-bold leading-[1.05] text-ink"
               style={{ fontSize: "clamp(2.4rem, 5vw, 3.4rem)" }}
             >
               Get In{" "}
               <span
                 style={{
-                  background:           "linear-gradient(135deg, #154565 0%, #793146 100%)",
+                  background:           "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor:  "transparent",
                   backgroundClip:       "text",
@@ -84,7 +84,7 @@ export default function ContactPage() {
                 Touch
               </span>
             </h1>
-            <p className="mt-4 text-[15px] text-[#4a6070] leading-relaxed">
+            <p className="mt-4 text-[15px] text-body leading-relaxed">
               Reach out for appointments, test information, or billing questions — we&apos;re happy to help.
             </p>
           </div>
@@ -96,13 +96,13 @@ export default function ContactPage() {
                 <div
                   className="flex flex-col gap-2.5 p-4 rounded-2xl bg-white group"
                   style={{
-                    border:    "1px solid rgba(21,69,101,0.09)",
-                    boxShadow: "0 2px 12px rgba(21,69,101,0.06)",
+                    border:    "1px solid rgb(var(--c-brand-rgb) / 0.09)",
+                    boxShadow: "0 2px 12px rgb(var(--c-brand-rgb) / 0.06)",
                   }}
                 >
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                    style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                   >
                     <Icon className="w-3.5 h-3.5 text-white" />
                   </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                     <p className="font-poppins text-[9.5px] font-bold tracking-[0.13em] text-[#94a3b8] uppercase mb-1">
                       {label}
                     </p>
-                    <p className="font-poppins text-[12.5px] font-medium text-[#0d2b45] leading-snug whitespace-pre-line group-hover:text-[#154565] transition-colors">
+                    <p className="font-poppins text-[12.5px] font-medium text-ink leading-snug whitespace-pre-line group-hover:text-brand transition-colors">
                       {value}
                     </p>
                   </div>
@@ -140,8 +140,8 @@ export default function ContactPage() {
         >
           <MapEmbed />
           <div className="absolute top-4 left-6 bg-white/95 backdrop-blur-sm px-3.5 py-2 rounded-xl shadow-md z-10">
-            <p className="font-poppins text-[11px] font-bold text-[#793146] uppercase tracking-wide">Our Location</p>
-            <p className="font-poppins text-[12px] text-[#0d2b45] mt-0.5">2177 Oak Tree Rd, Edison NJ</p>
+            <p className="font-poppins text-[11px] font-bold text-accent uppercase tracking-wide">Our Location</p>
+            <p className="font-poppins text-[12px] text-ink mt-0.5">2177 Oak Tree Rd, Edison NJ</p>
           </div>
         </div>
       </section>
@@ -150,20 +150,20 @@ export default function ContactPage() {
       <section className="relative py-16">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f0f4f8" }}
+          style={{ background: "var(--c-surface-2)" }}
         />
         <div className="relative z-10 max-w-2xl mx-auto px-4">
           <div className="mb-8">
             <div className="inline-flex items-center gap-2.5 mb-4">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 Send a Message
               </span>
             </div>
-            <h2 className="text-[1.7rem] font-inter font-bold text-[#0d2b45]">
+            <h2 className="text-[1.7rem] font-inter font-bold text-ink">
               How Can We Help?
             </h2>
-            <p className="mt-1.5 text-[14px] text-[#4a6070]">
+            <p className="mt-1.5 text-[14px] text-body">
               Fill in the form and we&apos;ll get back to you within one business day.
             </p>
           </div>

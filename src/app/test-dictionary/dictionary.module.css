@@ -1,20 +1,20 @@
 .wrapper {
-  --navy-900: #0d2b45;
-  --navy-800: #154565;
-  --navy-700: #154565;
-  --navy-100: #e4ecf4;
-  --navy-50:  #f0f4f8;
-  --red:      #793146;
-  --red-soft: #f7edf0;
-  --ink:      #0d2b45;
+  --navy-900: var(--c-ink);
+  --navy-800: var(--c-brand);
+  --navy-700: var(--c-brand);
+  --navy-100: var(--c-tint-100);
+  --navy-50:  var(--c-surface-2);
+  --red:      var(--c-accent);
+  --red-soft: var(--c-accent-soft);
+  --ink:      var(--c-ink);
   --ink-2:    #364152;
   --ink-3:    #6b7280;
   --line:     #e5e7eb;
   --line-2:   #eef0f4;
   --bg:       #fafbfc;
   --panel:    #ffffff;
-  --shadow:   0 1px 2px rgba(13,43,69,.04), 0 4px 12px rgba(13,43,69,.04);
-  --shadow-lg:0 8px 32px rgba(13,43,69,.08), 0 24px 64px rgba(13,43,69,.10);
+  --shadow:   0 1px 2px rgb(var(--c-ink-rgb) / .04), 0 4px 12px rgb(var(--c-ink-rgb) / .04);
+  --shadow-lg:0 8px 32px rgb(var(--c-ink-rgb) / .08), 0 24px 64px rgb(var(--c-ink-rgb) / .10);
   font-family: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--bg);
@@ -28,7 +28,7 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(1200px 400px at 80% -10%, rgba(121,49,70,.07), transparent 60%),
+    radial-gradient(1200px 400px at 80% -10%, rgb(var(--c-accent-rgb) / .07), transparent 60%),
     linear-gradient(180deg, var(--navy-50) 0%, transparent 100%);
   border-bottom: 1px solid var(--line);
 }
@@ -63,8 +63,8 @@
   transform: rotateX(72deg);
   transform-origin: bottom center;
   background-image:
-    linear-gradient(rgba(21,69,101,.13) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(21,69,101,.13) 1px, transparent 1px);
+    linear-gradient(rgb(var(--c-brand-rgb) / .13) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c-brand-rgb) / .13) 1px, transparent 1px);
   background-size: 54px 54px;
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.28) 0%, transparent 68%);
   mask-image: linear-gradient(to top, rgba(0,0,0,.28) 0%, transparent 68%);
@@ -78,7 +78,7 @@
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  border: 1.5px solid rgba(21,69,101,.10);
+  border: 1.5px solid rgb(var(--c-brand-rgb) / .10);
   transform: perspective(900px) rotateX(58deg) rotateZ(-8deg);
 }
 .orbit2 {
@@ -88,7 +88,7 @@
   width: 270px;
   height: 270px;
   border-radius: 50%;
-  border: 1px solid rgba(121,49,70,.10);
+  border: 1px solid rgb(var(--c-accent-rgb) / .10);
   transform: perspective(600px) rotateX(52deg) rotateZ(-8deg);
 }
 .orbit3 {
@@ -98,7 +98,7 @@
   width: 145px;
   height: 145px;
   border-radius: 50%;
-  border: 1px solid rgba(21,69,101,.08);
+  border: 1px solid rgb(var(--c-brand-rgb) / .08);
   transform: perspective(400px) rotateX(45deg) rotateZ(-8deg);
 }
 .eyebrow {
@@ -161,7 +161,7 @@
 }
 .search input:focus {
   border-color: var(--navy-800);
-  box-shadow: 0 0 0 4px rgba(21,69,101,.12), var(--shadow);
+  box-shadow: 0 0 0 4px rgb(var(--c-brand-rgb) / .12), var(--shadow);
 }
 .searchIcon {
   position: absolute;

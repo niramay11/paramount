@@ -57,7 +57,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={`${baseButtonClasses} ${
           isFirst
             ? "text-[#C4CDD5] border-[#C4CDD5] cursor-not-allowed"
-            : "text-black border-black hover:bg-gradient-to-r hover:from-[#154565] hover:to-[#793146] hover:text-white"
+            : "text-black border-black hover:bg-gradient-to-r hover:from-soft hover:to-soft-end hover:text-white"
         }`}
       >
         <ChevronLeft size={16} />
@@ -78,8 +78,8 @@ const Pagination: React.FC<PaginationProps> = ({
             onClick={() => handleClick(Number(page))}
             className={`${baseButtonClasses} ${
               currentPage === page
-                ? "bg-gradient-to-r from-[#154565] to-[#793146] text-white border-transparent"
-                : "text-black border-black hover:bg-gradient-to-r hover:from-[#154565] hover:to-[#793146] hover:text-white"
+                ? "bg-gradient-to-r from-brand to-brand-end text-white border-transparent"
+                : "text-black border-black hover:bg-gradient-to-r hover:from-soft hover:to-soft-end hover:text-white"
             }`}
           >
             {page}
@@ -94,7 +94,7 @@ const Pagination: React.FC<PaginationProps> = ({
         className={`${baseButtonClasses} ${
           isLast
             ? "text-[#C4CDD5] border-[#C4CDD5] cursor-not-allowed"
-            : "text-black border-black hover:bg-gradient-to-r hover:from-[#154565] hover:to-[#793146] hover:text-white"
+            : "text-black border-black hover:bg-gradient-to-r hover:from-soft hover:to-soft-end hover:text-white"
         }`}
       >
         <ChevronRight size={16} />

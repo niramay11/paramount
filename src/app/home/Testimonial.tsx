@@ -34,8 +34,8 @@ function MarqueeCard({ t }: { t: Testimonial }) {
     <div
       className="w-[280px] flex-shrink-0 rounded-2xl p-5 flex flex-col gap-4 bg-white/80"
       style={{
-        border:         "1px solid rgba(21,69,101,0.09)",
-        boxShadow:      "0 4px 20px rgba(21,69,101,0.07)",
+        border:         "1px solid rgb(var(--c-brand-rgb) / 0.09)",
+        boxShadow:      "0 4px 20px rgb(var(--c-brand-rgb) / 0.07)",
         backdropFilter: "blur(8px)",
       }}
     >
@@ -43,7 +43,7 @@ function MarqueeCard({ t }: { t: Testimonial }) {
       <div className="flex items-start justify-between">
         <span
           className="font-serif leading-none select-none"
-          style={{ fontSize: "48px", color: "rgba(21,69,101,0.10)", lineHeight: "0.8" }}
+          style={{ fontSize: "48px", color: "rgb(var(--c-brand-rgb) / 0.10)", lineHeight: "0.8" }}
         >
           &ldquo;
         </span>
@@ -71,14 +71,14 @@ function MarqueeCard({ t }: { t: Testimonial }) {
       <div className="flex items-center gap-3 pt-1 border-t border-gray-100">
         <div
           className="rounded-full flex-shrink-0 p-[2px]"
-          style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+          style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
         >
           <div className="rounded-full overflow-hidden bg-white w-8 h-8">
             <Image src={t.profile} alt={t.name} width={32} height={32} className="w-full h-full object-cover" />
           </div>
         </div>
         <div>
-          <p className="font-poppins text-[12.5px] font-semibold text-[#0d2b45] leading-tight">{t.name}</p>
+          <p className="font-poppins text-[12.5px] font-semibold text-ink leading-tight">{t.name}</p>
           <p className="font-poppins text-[10.5px] text-[#94a3b8] mt-0.5">Verified Patient</p>
         </div>
       </div>
@@ -109,21 +109,21 @@ const Testimonial: React.FC = () => (
     {/* ── Centered heading ─────────────────────── */}
     <div className="relative z-10 text-center max-w-2xl mx-auto px-4 mb-10">
       <div className="inline-flex items-center gap-2.5 mb-4">
-        <span className="block h-px w-8 bg-[#793146]" />
-        <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+        <span className="block h-px w-8 bg-accent" />
+        <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
           Patient Voices
         </span>
-        <span className="block h-px w-8 bg-[#793146]" />
+        <span className="block h-px w-8 bg-accent" />
       </div>
       <h2
         id="testimonials-heading"
-        className="font-inter font-bold leading-[1.05] text-[#0d2b45]"
+        className="font-inter font-bold leading-[1.05] text-ink"
         style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)" }}
       >
         What Our{" "}
         <span
           style={{
-            background:           "linear-gradient(135deg, #154565 0%, #793146 100%)",
+            background:           "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor:  "transparent",
             backgroundClip:       "text",
@@ -132,7 +132,7 @@ const Testimonial: React.FC = () => (
           Patients Say
         </span>
       </h2>
-      <p className="mt-3 text-[14.5px] text-[#4a6070] leading-relaxed">
+      <p className="mt-3 text-[14.5px] text-body leading-relaxed">
         Real experiences from the patients and families we serve every day.
       </p>
     </div>
@@ -143,11 +143,11 @@ const Testimonial: React.FC = () => (
       {/* Edge fades */}
       <div
         className="absolute left-0 inset-y-0 w-16 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to right, #c8dce9, transparent)" }}
+        style={{ background: "linear-gradient(to right, var(--c-pale-1), transparent)" }}
       />
       <div
         className="absolute right-0 inset-y-0 w-16 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to left, #c0d3e2, transparent)" }}
+        style={{ background: "linear-gradient(to left, var(--c-pale-3), transparent)" }}
       />
 
       {/* Row 1 — scrolls left */}

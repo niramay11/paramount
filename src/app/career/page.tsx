@@ -37,10 +37,10 @@ const BENEFITS = [
 /* ─── styles shared with other pages ────────────────── */
 
 const fieldClass =
-  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-[#0d2b45] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#154565]/20 focus:border-[#154565] focus:bg-white transition-all duration-150";
+  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-ink placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-150";
 
 const labelClass =
-  "block font-poppins text-[11px] font-semibold tracking-wide text-[#4a6070] uppercase mb-1";
+  "block font-poppins text-[11px] font-semibold tracking-wide text-body uppercase mb-1";
 
 /* ─── page ───────────────────────────────────────────── */
 
@@ -112,7 +112,7 @@ export default function CareerPage() {
           {/* Dark overlay */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(135deg, rgba(13,43,69,0.93) 0%, rgba(21,69,101,0.88) 50%, rgba(121,49,70,0.82) 100%)" }}
+            style={{ background: "linear-gradient(135deg, rgb(var(--c-hero-1-rgb) / 0.93) 0%, rgb(var(--c-hero-2-rgb) / 0.88) 50%, rgb(var(--c-hero-3-rgb) / 0.82) 100%)" }}
           />
         </div>
 
@@ -139,8 +139,8 @@ export default function CareerPage() {
           {/* Left — copy */}
           <div>
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#c97a97]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#c97a97] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent-light" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent-light uppercase font-inter">
                 We&apos;re Hiring
               </span>
             </div>
@@ -152,7 +152,7 @@ export default function CareerPage() {
               Build Your Career<br />
               <span
                 style={{
-                  background:           "linear-gradient(135deg, #a8d0f0 0%, #e8a0bc 100%)",
+                  background:           "linear-gradient(135deg, var(--c-pastel-a) 0%, var(--c-pastel-b) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor:  "transparent",
                   backgroundClip:       "text",
@@ -178,7 +178,7 @@ export default function CareerPage() {
                     backdropFilter: "blur(6px)",
                   }}
                 >
-                  <Icon className="w-3.5 h-3.5 text-[#a8d0f0]" />
+                  <Icon className="w-3.5 h-3.5 text-pastel" />
                   <span className="font-poppins text-[12px] font-semibold text-white/90">{label}</span>
                 </div>
               ))}
@@ -191,11 +191,11 @@ export default function CareerPage() {
             style={{ boxShadow: "0 8px 48px rgba(0,0,0,0.22)" }}
           >
             {/* Gradient accent bar */}
-            <div className="h-[3px]" style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }} />
+            <div className="h-[3px]" style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }} />
 
             <div className="p-6 sm:p-7">
-              <h2 className="font-inter font-bold text-[1.15rem] text-[#0d2b45] mb-1">Apply Now</h2>
-              <p className="font-poppins text-[12px] text-[#4a6070] mb-5">
+              <h2 className="font-inter font-bold text-[1.15rem] text-ink mb-1">Apply Now</h2>
+              <p className="font-poppins text-[12px] text-body mb-5">
                 We review every application and respond within 2–3 business days.
               </p>
 
@@ -224,11 +224,11 @@ export default function CareerPage() {
                 {/* Name */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="firstName" className={labelClass}>First Name <span className="text-[#793146]">*</span></label>
+                    <label htmlFor="firstName" className={labelClass}>First Name <span className="text-accent">*</span></label>
                     <input id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First name" required className={fieldClass} />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className={labelClass}>Last Name <span className="text-[#793146]">*</span></label>
+                    <label htmlFor="lastName" className={labelClass}>Last Name <span className="text-accent">*</span></label>
                     <input id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last name" required className={fieldClass} />
                   </div>
                 </div>
@@ -240,20 +240,20 @@ export default function CareerPage() {
                     <input id="telephone" name="telephone" type="tel" value={formData.telephone} onChange={handleChange} placeholder="(555) 000-0000" className={fieldClass} />
                   </div>
                   <div>
-                    <label htmlFor="cellNumber" className={labelClass}>Cell <span className="text-[#793146]">*</span></label>
+                    <label htmlFor="cellNumber" className={labelClass}>Cell <span className="text-accent">*</span></label>
                     <input id="cellNumber" name="cellNumber" type="tel" value={formData.cellNumber} onChange={handleChange} placeholder="(555) 000-0000" required className={fieldClass} />
                   </div>
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className={labelClass}>Email <span className="text-[#793146]">*</span></label>
+                  <label htmlFor="email" className={labelClass}>Email <span className="text-accent">*</span></label>
                   <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="you@email.com" required className={fieldClass} />
                 </div>
 
                 {/* Position */}
                 <div>
-                  <label htmlFor="position" className={labelClass}>Position Applied For <span className="text-[#793146]">*</span></label>
+                  <label htmlFor="position" className={labelClass}>Position Applied For <span className="text-accent">*</span></label>
                   <select
                     id="position" name="position" value={formData.position}
                     onChange={handleChange} required
@@ -268,7 +268,7 @@ export default function CareerPage() {
 
                 {/* Resume upload */}
                 <div>
-                  <label className={labelClass}>Resume / CV <span className="text-[#793146]">*</span></label>
+                  <label className={labelClass}>Resume / CV <span className="text-accent">*</span></label>
                   <CustomFileUpload
                     id="document" name="document" label=""
                     accept=".pdf,.doc,.docx"
@@ -279,14 +279,14 @@ export default function CareerPage() {
 
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-1">
-                  <p className="font-poppins text-[11px] text-[#4a6070]">
-                    <span className="text-[#793146]">*</span> required
+                  <p className="font-poppins text-[11px] text-body">
+                    <span className="text-accent">*</span> required
                   </p>
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     className="px-6 py-2.5 rounded-full text-[13px] font-poppins font-semibold text-white flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                    style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                   >
                     {isSubmitting ? "Submitting…" : (<>Submit Application <ArrowRight className="w-4 h-4" /></>)}
                   </button>

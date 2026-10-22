@@ -96,10 +96,10 @@ const page = () => {
       {/* Header Section */}
       <section className="flex justify-center text-center">
         <div className="max-w-screen-md">
-          <h1 className="font-poppins font-semibold text-3xl sm:text-4xl lg:text-5xl text-[#154565]">
+          <h1 className="font-poppins font-semibold text-3xl sm:text-4xl lg:text-5xl text-brand">
             Our Services
           </h1>
-          <p className="font-poppins font-semibold text-xl sm:text-2xl mt-6 text-[#1F4362]">
+          <p className="font-poppins font-semibold text-xl sm:text-2xl mt-6 text-brand-dark">
             Precision. Excellence. Trust in Every Test
           </p>
           <p className="text-[#707070] font-poppins font-light mt-2 px-2">
@@ -125,15 +125,15 @@ const page = () => {
             />
             <div className="border border-[#B9B9B9] border-t-0 px-4 py-4 group-hover:bg-black transition-colors duration-300 rounded-b-2xl">
               <div className="flex flex-col gap-2">
-                <p className="font-poppins text-xl font-semibold group-hover:text-white text-[#1F4362]">
+                <p className="font-poppins text-xl font-semibold group-hover:text-white text-brand-dark">
                   {service.title}
                 </p>
                 <p className="font-poppins text-sm font-light group-hover:text-white text-[#707070]">
                   {service.description}
                 </p>
               </div>
-              <div className="w-12 cursor-pointer h-12 mt-4 rounded-full bg-[linear-gradient(180deg,_rgb(21,69,101),_rgb(121,49,70)_100%)] flex items-center justify-center group-hover:bg-white group-hover:bg-none transition">
-                <ArrowRightIcon className="text-white group-hover:text-[#154565]" />
+              <div className="w-12 cursor-pointer h-12 mt-4 rounded-full bg-[linear-gradient(180deg,_var(--c-brand),_var(--c-brand-end)_100%)] flex items-center justify-center group-hover:bg-white group-hover:bg-none transition">
+                <ArrowRightIcon className="text-white group-hover:text-brand" />
               </div>
             </div>
           </div>

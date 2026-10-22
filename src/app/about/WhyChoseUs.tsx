@@ -8,7 +8,7 @@ const WhyChooseUs = () => {
       <div className="container mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
         {/* Left Column - Heading */}
         <div className="lg:w-1/2">
-          <h2 className="font-poppins text-[#793146] font-semibold text-3xl sm:text-4xl lg:text-5xl mb-6">
+          <h2 className="font-poppins text-accent font-semibold text-3xl sm:text-4xl lg:text-5xl mb-6">
             Why Choose Paramount Diagnostic Lab
           </h2>
           <p className="font-poppins text-black text-sm sm:text-base leading-7 mb-4">

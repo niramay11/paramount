@@ -136,7 +136,7 @@ export default function TestimonialPage() {
       {/* ══ HEADER + MARQUEE ════════════════════════════════════ */}
       <section
         className="relative pt-16 pb-12 overflow-hidden marquee-wrap"
-        style={{ background: "linear-gradient(160deg, #0d2b45 0%, #154565 55%, #793146 100%)" }}
+        style={{ background: "linear-gradient(160deg, var(--c-hero-1) 0%, var(--c-hero-2) 55%, var(--c-hero-3) 100%)" }}
       >
         {/* Heading block */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
@@ -144,8 +144,8 @@ export default function TestimonialPage() {
           {/* Left — eyebrow + heading */}
           <div>
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#c97a97]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#c97a97] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent-light" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent-light uppercase font-inter">
                 Patient Stories
               </span>
             </div>
@@ -153,7 +153,7 @@ export default function TestimonialPage() {
               What Our<br />
               <span
                 style={{
-                  background: "linear-gradient(135deg, #a8d0f0 0%, #e8a0bc 100%)",
+                  background: "linear-gradient(135deg, var(--c-pastel-a) 0%, var(--c-pastel-b) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -174,12 +174,12 @@ export default function TestimonialPage() {
         {/* Left edge fade */}
         <div
           className="absolute left-0 inset-y-0 w-28 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #0d2b45, transparent)" }}
+          style={{ background: "linear-gradient(to right, var(--c-hero-1), transparent)" }}
         />
         {/* Right edge fade */}
         <div
           className="absolute right-0 inset-y-0 w-28 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #793146, transparent)" }}
+          style={{ background: "linear-gradient(to left, var(--c-hero-3), transparent)" }}
         />
 
         {/* Row 1 — scrolls left */}
@@ -206,21 +206,21 @@ export default function TestimonialPage() {
       <section className="relative py-14">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "#f0f4f8" }}
+          style={{ background: "var(--c-surface-2)" }}
         />
 
         <div className="relative z-10 max-w-2xl mx-auto px-4">
           <div className="mb-8">
             <div className="inline-flex items-center gap-2.5 mb-4">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 Your Turn
               </span>
             </div>
-            <h2 className="text-[1.7rem] font-inter font-bold text-[#0d2b45]">
+            <h2 className="text-[1.7rem] font-inter font-bold text-ink">
               Share Your Experience
             </h2>
-            <p className="mt-1.5 text-[14px] text-[#4a6070]">
+            <p className="mt-1.5 text-[14px] text-body">
               Your feedback helps us serve the community better.
             </p>
           </div>

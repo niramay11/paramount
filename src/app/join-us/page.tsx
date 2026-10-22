@@ -52,10 +52,10 @@ const BENEFITS = [
 /* ─── styles ─────────────────────────────────────────────── */
 
 const fieldClass =
-  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-[#0d2b45] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#154565]/20 focus:border-[#154565] focus:bg-white transition-all duration-150";
+  "w-full rounded-lg border border-gray-200 bg-gray-50 px-3.5 py-2.5 text-[13.5px] font-poppins text-ink placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-150";
 
 const labelClass =
-  "block font-poppins text-[11px] font-semibold tracking-wide text-[#4a6070] uppercase mb-1";
+  "block font-poppins text-[11px] font-semibold tracking-wide text-body uppercase mb-1";
 
 /* ─── page ─────────────────────────────────────────────── */
 
@@ -107,7 +107,7 @@ export default function JoinUsPage() {
       <section className="relative pt-12 pb-16">
         <div
           className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full z-0"
-          style={{ background: "linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)" }}
+          style={{ background: "linear-gradient(180deg, var(--c-surface-2) 0%, var(--c-surface-3) 100%)" }}
         />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -115,18 +115,18 @@ export default function JoinUsPage() {
           {/* Left — copy */}
           <div>
             <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="block h-px w-8 bg-[#793146]" />
-              <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#793146] uppercase font-inter">
+              <span className="block h-px w-8 bg-accent" />
+              <span className="text-[10.5px] font-bold tracking-[0.14em] text-accent uppercase font-inter">
                 We&apos;re Hiring
               </span>
             </div>
 
-            <h1 className="text-[2.2rem] sm:text-[2.8rem] font-inter font-bold leading-[1.1] text-[#0d2b45]">
+            <h1 className="text-[2.2rem] sm:text-[2.8rem] font-inter font-bold leading-[1.1] text-ink">
               Build Your Career<br />
-              <span className="text-[#154565]">at Paramount</span>
+              <span className="text-brand">at Paramount</span>
             </h1>
 
-            <p className="mt-4 text-[15px] text-[#4a6070] leading-relaxed max-w-md">
+            <p className="mt-4 text-[15px] text-body leading-relaxed max-w-md">
               Join a team of dedicated lab professionals making a real difference
               in patient care every single day.
             </p>
@@ -139,8 +139,8 @@ export default function JoinUsPage() {
                   className="flex items-center gap-2 bg-white rounded-full px-3.5 py-2 border border-gray-200"
                   style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}
                 >
-                  <Icon className="w-3.5 h-3.5 text-[#154565]" />
-                  <span className="font-poppins text-[12px] font-semibold text-[#0d2b45]">{label}</span>
+                  <Icon className="w-3.5 h-3.5 text-brand" />
+                  <span className="font-poppins text-[12px] font-semibold text-ink">{label}</span>
                 </div>
               ))}
             </div>
@@ -150,7 +150,7 @@ export default function JoinUsPage() {
           <div className="relative">
             <div
               className="absolute -inset-3 rounded-3xl z-0 opacity-20"
-              style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+              style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
             />
             <Image
               src={CareerPeople}
@@ -174,10 +174,10 @@ export default function JoinUsPage() {
 
           {/* Section heading */}
           <div className="mb-8">
-            <h2 className="text-[1.7rem] font-inter font-bold text-[#0d2b45]">
+            <h2 className="text-[1.7rem] font-inter font-bold text-ink">
               Send Your Application
             </h2>
-            <p className="mt-1.5 text-[14px] text-[#4a6070]">
+            <p className="mt-1.5 text-[14px] text-body">
               We review every application and respond within 2–3 business days.
             </p>
           </div>
@@ -214,7 +214,7 @@ export default function JoinUsPage() {
             {/* thin gradient accent bar */}
             <div
               className="h-[3px]"
-              style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+              style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
             />
 
             <form onSubmit={handleSubmit} className="p-6 sm:p-8 flex flex-col gap-5">
@@ -230,8 +230,8 @@ export default function JoinUsPage() {
                       onClick={() => setForm((f) => ({ ...f, position: value }))}
                       className={`py-1.5 rounded-full text-[12px] font-poppins font-semibold border transition-all duration-200 ${
                         form.position === value
-                          ? "bg-[#154565] text-white border-[#154565]"
-                          : "bg-white text-[#4a6070] border-gray-300 hover:border-[#154565] hover:text-[#154565]"
+                          ? "bg-brand text-white border-brand"
+                          : "bg-white text-body border-gray-300 hover:border-brand hover:text-brand"
                       }`}
                     >
                       {label}
@@ -244,7 +244,7 @@ export default function JoinUsPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="firstName" className={labelClass}>
-                    First Name <span className="text-[#793146]">*</span>
+                    First Name <span className="text-accent">*</span>
                   </label>
                   <input
                     id="firstName" name="firstName" value={form.firstName}
@@ -254,7 +254,7 @@ export default function JoinUsPage() {
                 </div>
                 <div>
                   <label htmlFor="lastName" className={labelClass}>
-                    Last Name <span className="text-[#793146]">*</span>
+                    Last Name <span className="text-accent">*</span>
                   </label>
                   <input
                     id="lastName" name="lastName" value={form.lastName}
@@ -268,7 +268,7 @@ export default function JoinUsPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="email" className={labelClass}>
-                    Email <span className="text-[#793146]">*</span>
+                    Email <span className="text-accent">*</span>
                   </label>
                   <input
                     id="email" name="email" type="email" value={form.email}
@@ -299,14 +299,14 @@ export default function JoinUsPage() {
 
               {/* Footer row */}
               <div className="flex items-center justify-between pt-1">
-                <p className="font-poppins text-[11px] text-[#4a6070]">
-                  <span className="text-[#793146]">*</span> required fields
+                <p className="font-poppins text-[11px] text-body">
+                  <span className="text-accent">*</span> required fields
                 </p>
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="px-7 py-2.5 rounded-full text-[13px] font-poppins font-semibold text-white flex items-center gap-2 hover:opacity-90 transition-opacity duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{ background: "linear-gradient(135deg, #154565 0%, #793146 100%)" }}
+                  style={{ background: "linear-gradient(135deg, var(--c-brand) 0%, var(--c-brand-end) 100%)" }}
                 >
                   {isSubmitting ? "Submitting…" : (
                     <>Submit Application <ArrowRight className="w-4 h-4" /></>

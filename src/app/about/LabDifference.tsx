@@ -41,7 +41,7 @@ const LabDifference = () => {
       <div className="flex flex-col lg:flex-row gap-12">
         {/* Left Column */}
         <div className="lg:w-1/2 border-b lg:border-b-0 lg:border-r lg:pr-12">
-          <h3 className="font-poppins text-[#793146] font-semibold text-3xl sm:text-4xl">
+          <h3 className="font-poppins text-accent font-semibold text-3xl sm:text-4xl">
             Paramount Lab Difference
           </h3>
           <p className="text-black leading-7 font-poppins mt-4 text-sm sm:text-base">
@@ -62,7 +62,7 @@ const LabDifference = () => {
                 className="w-6 h-6 mt-1"
               />
               <div>
-                <h4 className="font-poppins text-[#793146] font-semibold text-xl sm:text-2xl">
+                <h4 className="font-poppins text-accent font-semibold text-xl sm:text-2xl">
                   {item.title}
                 </h4>
                 <p className="font-poppins text-sm sm:text-base text-black mt-1 leading-6">

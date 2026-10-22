@@ -35,7 +35,7 @@ const MeetTheTeam = () => {
                   <div
                     key={index}
                     className={`transition-all duration-300 ease-in-out overflow-hidden 
-                      ${isActive ? "bg-[#793146] text-white" : "bg-[#e1e2d9] text-black"}`}
+                      ${isActive ? "bg-accent text-white" : "bg-[#e1e2d9] text-black"}`}
                   >
                     <div
                       className="flex items-center justify-between p-4 md:p-6 cursor-pointer"
@@ -72,7 +72,7 @@ const MeetTheTeam = () => {
 
           {/* Right Column - Content */}
           <div className="lg:w-1/2 lg:pl-8 flex flex-col justify-center">
-            <h3 className="font-poppins text-[#793146] font-semibold text-2xl sm:text-3xl md:text-4xl">
+            <h3 className="font-poppins text-accent font-semibold text-2xl sm:text-3xl md:text-4xl">
               Our Team: Expertise You Can Trust
             </h3>
             <p className="text-black leading-7 font-poppins mt-4 text-sm sm:text-base">
